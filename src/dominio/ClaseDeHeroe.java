@@ -1,6 +1,6 @@
 package dominio;
 
-public enum TIPOGUERRERO {
+public enum ClaseDeHeroe {
 	
 	MAGO, PALADIN, ASESINO, CABALLERO
 
