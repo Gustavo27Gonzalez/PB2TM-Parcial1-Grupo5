@@ -6,6 +6,7 @@ public abstract class Personaje {
 	private Integer puntosDeAtaque;
 	private Double probabilidadDeCritico;
 	private Integer puntosDeDefensa;
+	private Integer vidaMaxima;
 	
 	public Integer getPuntosDeDefensa() {
 		return puntosDeDefensa;
@@ -31,6 +32,12 @@ public abstract class Personaje {
 	public void setProbabilidadDeCritico(Double probabilidadDeCritico) {
 		this.probabilidadDeCritico = probabilidadDeCritico;
 	}
+	public Integer getVidaMaxima() {
+		return vidaMaxima;
+	}
+	public void setVidaMaxima(Integer vidaMaxima) {
+		this.vidaMaxima = vidaMaxima;
+	}
 	
 	public Integer atacar(Personaje objetivo) {
 		//ATAQUE DEFAULT SIN AGREGAR
@@ -44,6 +51,7 @@ public abstract class Personaje {
 		objetivo.setPuntosDeVida(objetivo.getPuntosDeVida()-dañoRealizado);
 		return dañoRealizado;
 	}
+	
 	
 	
 	
