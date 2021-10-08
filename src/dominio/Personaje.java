@@ -32,7 +32,8 @@ public abstract class Personaje {
 		this.probabilidadDeCritico = probabilidadDeCritico;
 	}
 	
-	public void atacar(Personaje objetivo) {
+	public Integer atacar(Personaje objetivo) {
+		//ATAQUE DEFAULT SIN AGREGAR
 		Integer dañoRealizado=this.puntosDeAtaque-objetivo.getPuntosDeDefensa();
 		//if (Math.random()<=this.getProbabilidadDeCritico()) {
 		//	dañoRealizado*=2;
@@ -41,6 +42,20 @@ public abstract class Personaje {
 			dañoRealizado=0;
 		}
 		objetivo.setPuntosDeVida(objetivo.getPuntosDeVida()-dañoRealizado);
+		return dañoRealizado;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

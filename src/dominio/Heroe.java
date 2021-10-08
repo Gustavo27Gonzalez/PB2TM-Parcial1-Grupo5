@@ -13,7 +13,7 @@ public class Heroe extends Personaje {
 		case 1: { // MAGO
 			this.setPuntosDeAtaque(20);
 			this.setPuntosDeVida(50);
-			this.setProbabilidadDeCritico(0.1);
+			this.setProbabilidadDeCritico(0.5);
 			this.setPuntosDeDefensa(20);
 			clase = ClaseDeHeroe.MAGO;
 			break;
@@ -45,12 +45,17 @@ public class Heroe extends Personaje {
 		default:
 			this.setPuntosDeAtaque(20);
 			this.setPuntosDeVida(50);
-			this.setProbabilidadDeCritico(0.20);
+			this.setProbabilidadDeCritico(0.2);
 			this.setPuntosDeDefensa(20);
 			clase = ClaseDeHeroe.CABALLERO;
 			break;
 		}
 	}
+	public void agregarArma (Arma arma) {
+		inventario[1]= arma;
+		
+	}
+	
 
 	public String getNombre() {
 		return nombre;
@@ -67,6 +72,24 @@ public class Heroe extends Personaje {
 	public void setClase(ClaseDeHeroe clase) {
 		this.clase = clase;
 	}
-	
+	@Override
+	public Integer atacar(Personaje objetivo) {
+	Integer dañoRealizado= (getPuntosDeAtaque() + obtenerDañoDeArmas()) -objetivo.getPuntosDeDefensa();
+	Integer multiplicadorMomentaneo= 2;
+	if (Math.random()<= getProbabilidadDeCritico()) {
+		dañoRealizado= (dañoRealizado* multiplicadorMomentaneo);
+	}
+	objetivo.setPuntosDeVida(objetivo.getPuntosDeVida()-dañoRealizado);
+		return dañoRealizado;
+	}
+	public Integer obtenerDañoDeArmas () {
+		Integer daño=0;
+		for (int j = 0; j < inventario.length; j++) {	
+		if(inventario[j]!=null) {
+			daño += inventario[j].getSumaAtaque();
+		}
+		}
+		return daño;
+	}
 	
 }
