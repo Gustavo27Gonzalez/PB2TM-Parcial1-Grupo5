@@ -9,62 +9,7 @@ public class Heroe extends Personaje {
 	public Heroe(String nombre, int eleccionClase) {
 		this.nombre = nombre;
 		inventario = new Arma[10];
-<<<<<<< Updated upstream
 		switch (eleccionClase) {
-=======
-		eleccionDeClase(eleccionClase);
-	}
-	public void agregarArma (Arma arma) {
-		inventario[1]= arma;
-		
-	}
-	
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public ClaseDeHeroe getClase() {
-		return clase;
-	}
-
-	public void setClase(ClaseDeHeroe clase) {
-		this.clase = clase;
-	}
-	//@Override
-	public void atacar2(Personaje objetivo) {
-	Integer dañoRealizado= (getPuntosDeAtaque() + obtenerDañoDeArmas()) - objetivo.getPuntosDeDefensa();
-	Double multiplicadorMomentaneo= 1.7;
-	if (Math.random()<= getProbabilidadDeCritico()) {
-		dañoRealizado= (int)(dañoRealizado* multiplicadorMomentaneo);
-	}
-	if (dañoRealizado<0) {
-		dañoRealizado=0;
-	}
-	objetivo.setPuntosDeVida(objetivo.getPuntosDeVida()-dañoRealizado);
-	if (objetivo.getPuntosDeVida() == 0) {
-		setPuntosDeVida(getVidaMaxima());
-	}
-	}
-	
-	public Integer obtenerDañoDeArmas () {
-		Integer daño=0;
-		for (int i = 0; i < inventario.length; i++) {	
-			if(inventario[i]!=null) {
-				daño += inventario[i].getSumaAtaque();
-		}
-		}
-		return daño;
-	}
-	
-	public void eleccionDeClase(Integer opcion) {
-		
-		switch (opcion) {
->>>>>>> Stashed changes
 		case 1: { // MAGO
 			this.setPuntosDeAtaque(20);
 			this.setPuntosDeVida(50);
