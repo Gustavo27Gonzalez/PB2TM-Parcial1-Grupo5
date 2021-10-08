@@ -39,7 +39,7 @@ public abstract class Personaje {
 		this.vidaMaxima = vidaMaxima;
 	}
 	
-	public Integer atacar(Personaje objetivo) {
+	public void atacar(Personaje objetivo) {
 		//ATAQUE DEFAULT SIN AGREGAR
 		Integer dañoRealizado=this.puntosDeAtaque-objetivo.getPuntosDeDefensa();
 		//if (Math.random()<=this.getProbabilidadDeCritico()) {
@@ -49,7 +49,6 @@ public abstract class Personaje {
 			dañoRealizado=0;
 		}
 		objetivo.setPuntosDeVida(objetivo.getPuntosDeVida()-dañoRealizado);
-		return dañoRealizado;
 	}
 	
 	
