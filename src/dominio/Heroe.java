@@ -13,7 +13,8 @@ public class Heroe extends Personaje {
 		case 1: { // MAGO
 			this.setPuntosDeAtaque(20);
 			this.setPuntosDeVida(50);
-			this.setProbabilidadDeCritico(0.1);
+			this.setVidaMaxima(50);
+			this.setProbabilidadDeCritico(0.15);
 			this.setPuntosDeDefensa(20);
 			clase = ClaseDeHeroe.MAGO;
 			break;
@@ -21,6 +22,7 @@ public class Heroe extends Personaje {
 		case 2: { // PALADIN
 			this.setPuntosDeAtaque(15);
 			this.setPuntosDeVida(60);
+			this.setVidaMaxima(60);
 			this.setProbabilidadDeCritico(0.1);
 			this.setPuntosDeDefensa(25);
 			clase = ClaseDeHeroe.PALADIN;
@@ -29,6 +31,7 @@ public class Heroe extends Personaje {
 		case 3: { // ASESINO
 			this.setPuntosDeAtaque(25);
 			this.setPuntosDeVida(40);
+			this.setVidaMaxima(40);
 			this.setProbabilidadDeCritico(0.3);
 			this.setPuntosDeDefensa(5);
 			clase = ClaseDeHeroe.ASESINO;
@@ -37,6 +40,7 @@ public class Heroe extends Personaje {
 		case 4: { // CABALLERO
 			this.setPuntosDeAtaque(20);
 			this.setPuntosDeVida(50);
+			this.setVidaMaxima(50);
 			this.setProbabilidadDeCritico(0.15);
 			this.setPuntosDeDefensa(20);
 			clase = ClaseDeHeroe.CABALLERO;
@@ -45,12 +49,18 @@ public class Heroe extends Personaje {
 		default:
 			this.setPuntosDeAtaque(20);
 			this.setPuntosDeVida(50);
-			this.setProbabilidadDeCritico(0.20);
+			this.setVidaMaxima(50);
+			this.setProbabilidadDeCritico(0.1);
 			this.setPuntosDeDefensa(20);
 			clase = ClaseDeHeroe.CABALLERO;
 			break;
 		}
 	}
+	public void agregarArma (Arma arma) {
+		inventario[1]= arma;
+		
+	}
+	
 
 	public String getNombre() {
 		return nombre;
@@ -67,6 +77,32 @@ public class Heroe extends Personaje {
 	public void setClase(ClaseDeHeroe clase) {
 		this.clase = clase;
 	}
+	@Override
+	public Integer atacar(Personaje objetivo) {
+	Integer dañoRealizado= (getPuntosDeAtaque() + obtenerDañoDeArmas()) - objetivo.getPuntosDeDefensa();
+	Double multiplicadorMomentaneo= 1.7;
+	if (Math.random()<= getProbabilidadDeCritico()) {
+		dañoRealizado= (int)(dañoRealizado* multiplicadorMomentaneo);
+	}
+	if (dañoRealizado<0) {
+		dañoRealizado=0;
+	}
+	objetivo.setPuntosDeVida(objetivo.getPuntosDeVida()-dañoRealizado);
+	if (objetivo.getPuntosDeVida() == 0) {
+		setPuntosDeVida(getVidaMaxima());
+	}
+		return dañoRealizado;
+	}
 	
+	public Integer obtenerDañoDeArmas () {
+		Integer daño=0;
+		for (int i = 0; i < inventario.length; i++) {	
+			if(inventario[i]!=null) {
+				daño += inventario[i].getSumaAtaque();
+		}
+		}
+		return daño;
+	}
+
 	
 }
