@@ -5,17 +5,60 @@ public class Heroe extends Personaje {
 	private String nombre;
 	private Arma[] inventario;
 	private ClaseDeHeroe clase;
+	private Integer contadorDeAtaques;
+	private final Integer BONUSATAQUECRITICO;
 
 	public Heroe(String nombre, int eleccionClase) {
 		this.nombre = nombre;
 		inventario = new Arma[10];
-		eleccionDeClase(eleccionClase);
+		this.contadorDeAtaques=0;
+		switch (eleccionClase) {
+		case 1: { // MAGO
+			this.setPuntosDeAtaque(20);
+			this.setPuntosDeVida(50);
+			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(4);
+			this.setPuntosDeDefensa(20);
+			this.BONUSATAQUECRITICO = 5;
+			clase = ClaseDeHeroe.MAGO;
+			break;
+		}
+		case 2: { // PALADIN
+			this.setPuntosDeAtaque(15);
+			this.setPuntosDeVida(60);
+			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(6);
+			this.setPuntosDeDefensa(25);
+			this.BONUSATAQUECRITICO = 3;
+			clase = ClaseDeHeroe.PALADIN;
+			break;
+		}
+		case 3: { // ASESINO
+			this.setPuntosDeAtaque(25);
+			this.setPuntosDeVida(40);
+			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(5);
+			this.setPuntosDeDefensa(5);
+			this.BONUSATAQUECRITICO = 2;
+			clase = ClaseDeHeroe.ASESINO;
+			break;
+		}
+		case 4: { // CABALLERO
+			this.setPuntosDeAtaque(20);
+			this.setPuntosDeVida(50);
+			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(3);
+			this.setPuntosDeDefensa(20);
+			this.BONUSATAQUECRITICO = 4;
+			clase = ClaseDeHeroe.CABALLERO;
+			break;
+		}
+		default:
+			this.setPuntosDeAtaque(20);
+			this.setPuntosDeVida(50);
+			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(3);
+			this.setPuntosDeDefensa(20);
+			this.BONUSATAQUECRITICO = 4;
+			clase = ClaseDeHeroe.CABALLERO;
+			break;
+		}
 	}
-	public void agregarArma (Arma arma) {
-		inventario[1]= arma;
-		
-	}
-	
 
 	public String getNombre() {
 		return nombre;
@@ -32,81 +75,75 @@ public class Heroe extends Personaje {
 	public void setClase(ClaseDeHeroe clase) {
 		this.clase = clase;
 	}
-	//@Override
-	public Integer atacar2(Personaje objetivo) {
-	Integer dañoRealizado= (getPuntosDeAtaque() + obtenerDañoDeArmas()) - objetivo.getPuntosDeDefensa();
-	Double multiplicadorMomentaneo= 1.7;
-	if (Math.random()<= getProbabilidadDeCritico()) {
-		dañoRealizado= (int)(dañoRealizado* multiplicadorMomentaneo);
+
+	public Integer getContadorDeAtaques() {
+		return contadorDeAtaques;
 	}
-	if (dañoRealizado<0) {
-		dañoRealizado=0;
+
+	public void setContadorDeAtaques(Integer contadorDeAtaques) {
+		this.contadorDeAtaques = contadorDeAtaques;
 	}
-	objetivo.setPuntosDeVida(objetivo.getPuntosDeVida()-dañoRealizado);
-	if (objetivo.getPuntosDeVida() == 0) {
-		setPuntosDeVida(getVidaMaxima());
+
+	public Arma[] getInventario() {
+		return this.inventario;
 	}
-		return dañoRealizado;
+
+	public void setInventario(Arma inventario) {
+		if(!elInventarioEstaLLeno()) {
+			for( int i = 0; i < this.inventario.length; i++) {
+				if(this.inventario[i]==null) {
+					this.inventario[i]= inventario;
+					i = 10;
+				}
+			}
+		}
 	}
 	
-	public Integer obtenerDañoDeArmas () {
-		Integer daño=0;
-		for (int i = 0; i < inventario.length; i++) {	
-			if(inventario[i]!=null) {
-				daño += inventario[i].getSumaAtaque();
+	public boolean elInventarioEstaLLeno() {
+		boolean estaLLeno = false;
+		int contadorObjetosInventario = 0;
+		int i;
+		for( i=0 ; i < this.inventario.length; i++) {
+			if(this.inventario[i]!=null) {
+				contadorObjetosInventario++;
+			}
 		}
+		if(contadorObjetosInventario == this.inventario.length) {
+			estaLLeno = true;
+		}else {
+			estaLLeno = false;
 		}
-		return daño;
+		return estaLLeno;
 	}
 	
-	public void eleccionDeClase(Integer opcion) {
+	private Integer sumaDeDaÃ±oDeArmasEnInventario() {
+		Integer suma=0;
+		for (int i = 0; i < this.inventario.length; i++) {
+			if(this.inventario[i]!=null) {
+				suma += this.inventario[i].getSumaAtaque();
+			}
+		}
+		return suma;
+	}
+
+	@Override
+	public void atacar(Personaje objetivo) {
+		Integer daÃ±oRealizado = 0;
+		if ( ( ++this.contadorDeAtaques ) == this.getCadaTantosAtaquesNormalesLanzaUnAtaqueCritico() ) {
+			daÃ±oRealizado = ( ( this.BONUSATAQUECRITICO * this.getPuntosDeAtaque() ) + sumaDeDaÃ±oDeArmasEnInventario() ) - objetivo.getPuntosDeDefensa(); 
+			this.contadorDeAtaques = 0;
+		}else {
+			daÃ±oRealizado = ( this.getPuntosDeAtaque() + sumaDeDaÃ±oDeArmasEnInventario() ) - objetivo.getPuntosDeDefensa(); 
+			this.contadorDeAtaques++;
+		}
+		if(daÃ±oRealizado > 0) {
+			objetivo.setPuntosDeVida(objetivo.getPuntosDeVida() - daÃ±oRealizado);
+		}else {
+			if(daÃ±oRealizado < 0) {
+				this.setPuntosDeVida(getPuntosDeVida() - ( objetivo.getPuntosDeDefensa() - daÃ±oRealizado ));
+			}
+		}
 		
-		switch (opcion) {
-		case 1: { // MAGO
-			this.setPuntosDeAtaque(20);
-			this.setPuntosDeVida(50);
-			this.setVidaMaxima(50);
-			this.setProbabilidadDeCritico(0.15);
-			this.setPuntosDeDefensa(20);
-			clase = ClaseDeHeroe.MAGO;
-			break;
-		}
-		case 2: { // PALADIN
-			this.setPuntosDeAtaque(15);
-			this.setPuntosDeVida(60);
-			this.setVidaMaxima(60);
-			this.setProbabilidadDeCritico(0.1);
-			this.setPuntosDeDefensa(25);
-			clase = ClaseDeHeroe.PALADIN;
-			break;
-		}
-		case 3: { // ASESINO
-			this.setPuntosDeAtaque(25);
-			this.setPuntosDeVida(40);
-			this.setVidaMaxima(40);
-			this.setProbabilidadDeCritico(0.3);
-			this.setPuntosDeDefensa(5);
-			clase = ClaseDeHeroe.ASESINO;
-			break;
-		}
-		case 4: { // CABALLERO
-			this.setPuntosDeAtaque(20);
-			this.setPuntosDeVida(50);
-			this.setVidaMaxima(50);
-			this.setProbabilidadDeCritico(0.15);
-			this.setPuntosDeDefensa(20);
-			clase = ClaseDeHeroe.CABALLERO;
-			break;
-		}
-		default:
-			this.setPuntosDeAtaque(20);
-			this.setPuntosDeVida(50);
-			this.setVidaMaxima(50);
-			this.setProbabilidadDeCritico(0.1);
-			this.setPuntosDeDefensa(20);
-			clase = ClaseDeHeroe.CABALLERO;
-			break;
-		}
 	}
 
 	
