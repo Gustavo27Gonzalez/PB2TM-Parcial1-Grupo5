@@ -59,19 +59,19 @@ public class Enemigo extends Personaje {
 
 	@Override
 	public void atacar(Personaje objetivo) {
-		Integer dañoRealizado = 0;
+		Integer danoRealizado = 0;
 		if ( ( ++this.contadorDeAtaques ) == this.getCadaTantosAtaquesNormalesLanzaUnAtaqueCritico() ) {
-			dañoRealizado = ( this.BONUSATAQUECRITICO * this.getPuntosDeAtaque() ) - objetivo.getPuntosDeDefensa(); 
+			danoRealizado = ( this.BONUSATAQUECRITICO * this.getPuntosDeAtaque() ) - objetivo.getPuntosDeDefensa(); 
 			this.contadorDeAtaques = 0;
 		}else {
-			dañoRealizado = this.getPuntosDeAtaque() - objetivo.getPuntosDeDefensa(); 
+			danoRealizado = this.getPuntosDeAtaque() - objetivo.getPuntosDeDefensa(); 
 			this.contadorDeAtaques++;
 		}
-		if(dañoRealizado > 0) {
-			objetivo.setPuntosDeVida(objetivo.getPuntosDeVida() - dañoRealizado);
+		if(danoRealizado > 0) {
+			objetivo.setPuntosDeVida(objetivo.getPuntosDeVida() - danoRealizado);
 		}else {
-			if(dañoRealizado < 0) {
-				this.setPuntosDeVida(getPuntosDeVida() - ( objetivo.getPuntosDeDefensa() - dañoRealizado ));
+			if(danoRealizado < 0) {
+				this.setPuntosDeVida(getPuntosDeVida() - ( objetivo.getPuntosDeDefensa() - danoRealizado ));
 			}
 		}
 		

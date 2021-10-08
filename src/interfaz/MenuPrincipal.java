@@ -11,7 +11,7 @@ public class MenuPrincipal {
 
 	public static void main(String[] args) {
 		
-		Boolean exitFlag = false;
+		Integer exitFlag = 0;
 		Juego partidaNueva = new Juego(null, 0);
 		Enemigo enemigoGenerico;
 		Jefe jefeFinal;
@@ -19,9 +19,9 @@ public class MenuPrincipal {
 		menuPrincipal(partidaNueva);
 		do {
 			opcionesDelMenu();
-			exitFlag = true;
+			exitFlag = seleccionesMenu(partidaNueva);
 			
-		}while(exitFlag != true);
+		}while(exitFlag != 3);
 
 		System.out.println("\t\tSaliendo del juego...");
 	}
@@ -54,7 +54,7 @@ public class MenuPrincipal {
 		partida.getHeroePrincipal().eleccionDeClase(seleccionClase);
 		
 		System.out.println("Se ha creado el heroe: " + partida.getHeroePrincipal().getNombre() + ", de clase: " + partida.getHeroePrincipal().getClase());
-		
+		System.out.println("***************************************************");
 	}
 
 	
@@ -65,26 +65,35 @@ public class MenuPrincipal {
 		System.out.println("1 - Combate a muerte");
 		System.out.println("2 - Ver inventario");
 		System.out.println("3 - Salir");
+		
 	}
 	
-	private static Boolean seleccionesMenu(Juego partida) {
+	private static Integer seleccionesMenu(Juego partida) {
 		Scanner teclado = new Scanner(System.in);
 		Integer opcion = teclado.nextInt();
+		Integer back = 0;
 		
 		switch(opcion) {
 		case 1:
 			partida.crearEnemigo();
-			partida.pelea(partida.getHeroePrincipal(), partida.enemigoAPelear());
+			if(partida.pelea(partida.getHeroePrincipal(), partida.enemigoAPelear())) {
+				System.out.println("Ganaste!!!");
+				break;
+			}else {
+			System.out.println("Perdiste!!");
+			back = 3;
 			break;
+			}
 		case 2:
-			partida.getHeroePrincipal().verInventario();
+			System.out.println(partida.getHeroePrincipal().verInventario());
 			break;
 		case 3:
-			return true;
+			back = 3;
+			break;
 		default:
 				break;
 		}
 		
-		return true;
+		return back;
 	}
 }

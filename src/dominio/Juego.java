@@ -51,11 +51,12 @@ public class Juego {
 		Boolean victoria = false;
 		while (heroePrincipal.getPuntosDeVida() > 0) {
 			heroePrincipal.atacar(enemigo);
-			enemigo.atacar(heroePrincipal);
 			if (enemigo.getPuntosDeVida() <= 0) {
 				victoria = true;
 			break;
 			}
+			enemigo.atacar(heroePrincipal);
+			
 		}
 		return victoria;
 	}
