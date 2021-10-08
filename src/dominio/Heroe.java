@@ -77,8 +77,8 @@ public class Heroe extends Personaje {
 	public void setClase(ClaseDeHeroe clase) {
 		this.clase = clase;
 	}
-	@Override
-	public Integer atacar(Personaje objetivo) {
+	//@Override
+	public Integer atacar2(Personaje objetivo) {
 	Integer dañoRealizado= (getPuntosDeAtaque() + obtenerDañoDeArmas()) - objetivo.getPuntosDeDefensa();
 	Double multiplicadorMomentaneo= 1.7;
 	if (Math.random()<= getProbabilidadDeCritico()) {

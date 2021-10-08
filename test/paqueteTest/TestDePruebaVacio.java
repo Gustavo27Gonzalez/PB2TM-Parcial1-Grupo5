@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import dominio.Enemigo;
 import dominio.Heroe;
+import dominio.Jefe;
+import dominio.Juego;
 
 public class TestDePruebaVacio {
 
@@ -52,6 +54,8 @@ public class TestDePruebaVacio {
 		assertEquals(valorEsperado, enemigo.getPuntosDeDefensa());
 	}
 	
+	
+	// ESTE TEST FUE PROBADO SIN LA PROBABILIDAD DE CRITICO APLICADA
 	@Test
 	public void queSePuedaAtacar() {
 		Enemigo enemigo=new Enemigo(30, 0, 20);
@@ -67,6 +71,7 @@ public class TestDePruebaVacio {
 		assertEquals(vidaEnemigoEsperada, enemigo.getPuntosDeVida());
 	}
 	
+	// ESTE TEST FUE PROBADO SIN LA PROBABILIDAD DE CRITICO APLICADA
 	@Test
 	public void queSiLaDefensaEsMayorAlAtaqueAnuleElDaño() {
 		Enemigo enemigo=new Enemigo(10, 0, 20);
@@ -77,5 +82,59 @@ public class TestDePruebaVacio {
 		enemigo.atacar(mago);
 		
 		assertEquals(vidaMagoEsperada, mago.getPuntosDeVida());
+	}
+	
+	// ESTE TEST FUE PROBADO SIN LA PROBABILIDAD DE CRITICO APLICADA
+	@Test
+	public void queSePuedaPelearConUnEnemigoYElHeroeGane() {
+		Juego juego=new Juego("Mago", 1);
+		Enemigo enemigo=new Enemigo(10, 10, 20);
+		
+		assertTrue(juego.pelea(juego.getHeroePrincipal(), enemigo));
+	}
+	
+	// ESTE TEST FUE PROBADO SIN LA PROBABILIDAD DE CRITICO APLICADA
+	@Test
+	public void queSePuedaPelearConUnEnemigoYElHeroePierda() {
+		Juego juego=new Juego("Mago", 1);
+		Enemigo enemigo=new Enemigo(50, 20, 80);
+		
+		assertFalse(juego.pelea(juego.getHeroePrincipal(), enemigo));
+	}
+	
+	// ESTE TEST FUE PROBADO SIN LA PROBABILIDAD DE CRITICO APLICADA
+	@Test
+	public void queSePuedaPelearConUnJefeYElHeroeGane() {
+		Juego juego=new Juego("Mago", 1);
+		Jefe enemigo=new Jefe(10, 10, 20);
+		
+		assertTrue(juego.pelea(juego.getHeroePrincipal(), enemigo));
+	}
+	
+	// ESTE TEST FUE PROBADO SIN LA PROBABILIDAD DE CRITICO APLICADA
+	@Test
+	public void queSePuedaPelearConUnJefeYElHeroePierda() {
+		Juego juego=new Juego("Mago", 1);
+		Jefe enemigo=new Jefe(50, 10, 80);
+		
+		assertFalse(juego.pelea(juego.getHeroePrincipal(), enemigo));
+	}
+	
+	@Test
+	public void queElJuegoCreeLasArmasADropearAlInicar() {
+		Juego juego=new Juego("Mago", 1);
+		
+		assertTrue(juego.verificarArmaEnPosicion(0));
+		assertTrue(juego.verificarArmaEnPosicion(1));
+		assertTrue(juego.verificarArmaEnPosicion(2));
+		assertTrue(juego.verificarArmaEnPosicion(3));
+		assertTrue(juego.verificarArmaEnPosicion(4));
+		assertTrue(juego.verificarArmaEnPosicion(5));
+		assertTrue(juego.verificarArmaEnPosicion(6));
+		assertTrue(juego.verificarArmaEnPosicion(7));
+		assertTrue(juego.verificarArmaEnPosicion(8));
+		assertTrue(juego.verificarArmaEnPosicion(9));
+		
+		
 	}
 }
