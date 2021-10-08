@@ -4,9 +4,8 @@ public abstract class Personaje {
 			
 	private Integer puntosDeVida;
 	private Integer puntosDeAtaque;
-	private Double probabilidadDeCritico;
+	private Integer cadaTantosAtaquesNormalesLanzaUnAtaqueCritico;
 	private Integer puntosDeDefensa;
-	private Integer vidaMaxima;
 	
 	public Integer getPuntosDeDefensa() {
 		return puntosDeDefensa;
@@ -26,12 +25,13 @@ public abstract class Personaje {
 	public void setPuntosDeAtaque(Integer puntosDeAtaque) {
 		this.puntosDeAtaque = puntosDeAtaque;
 	}
-	public Double getProbabilidadDeCritico() {
-		return probabilidadDeCritico;
+	public Integer getCadaTantosAtaquesNormalesLanzaUnAtaqueCritico() {
+		return cadaTantosAtaquesNormalesLanzaUnAtaqueCritico;
 	}
-	public void setProbabilidadDeCritico(Double probabilidadDeCritico) {
-		this.probabilidadDeCritico = probabilidadDeCritico;
+	public void setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(Integer ataqueCriticoCadaXataques) {
+		this.cadaTantosAtaquesNormalesLanzaUnAtaqueCritico = ataqueCriticoCadaXataques;
 	}
+
 	public Integer getVidaMaxima() {
 		return vidaMaxima;
 	}
@@ -41,28 +41,16 @@ public abstract class Personaje {
 	
 	public void atacar(Personaje objetivo) {
 		//ATAQUE DEFAULT SIN AGREGAR
-		Integer dañoRealizado=this.puntosDeAtaque-objetivo.getPuntosDeDefensa();
+		Integer daï¿½oRealizado=this.puntosDeAtaque-objetivo.getPuntosDeDefensa();
 		//if (Math.random()<=this.getProbabilidadDeCritico()) {
-		//	dañoRealizado*=2;
+		//	daï¿½oRealizado*=2;
 		//}
-		if (dañoRealizado<0) {
-			dañoRealizado=0;
+		if (daï¿½oRealizado<0) {
+			daï¿½oRealizado=0;
 		}
-		objetivo.setPuntosDeVida(objetivo.getPuntosDeVida()-dañoRealizado);
+		objetivo.setPuntosDeVida(objetivo.getPuntosDeVida()-daï¿½oRealizado);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public abstract void atacar(Personaje objetivo);
 	
 }
