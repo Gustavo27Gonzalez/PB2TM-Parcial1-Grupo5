@@ -124,7 +124,17 @@ public class TestDePruebaVacio {
 	public void queElJuegoCreeLasArmasADropearAlInicar() {
 		Juego juego=new Juego("Mago", 1);
 		
-		assertNotNull(juego.verificarArmaEnPosicion(0));
+		assertTrue(juego.verificarArmaEnPosicion(0));
+		assertTrue(juego.verificarArmaEnPosicion(1));
+		assertTrue(juego.verificarArmaEnPosicion(2));
+		assertTrue(juego.verificarArmaEnPosicion(3));
+		assertTrue(juego.verificarArmaEnPosicion(4));
+		assertTrue(juego.verificarArmaEnPosicion(5));
+		assertTrue(juego.verificarArmaEnPosicion(6));
+		assertTrue(juego.verificarArmaEnPosicion(7));
+		assertTrue(juego.verificarArmaEnPosicion(8));
+		assertTrue(juego.verificarArmaEnPosicion(9));
+		
 		
 	}
 }

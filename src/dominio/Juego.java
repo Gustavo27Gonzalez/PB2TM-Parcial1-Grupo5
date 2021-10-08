@@ -21,7 +21,7 @@ public class Juego {
 
 	public void crearArmas() {
 		for (int i = 0; i < armasADropear.length; i++) {
-			if (this.armasADropear == null) {
+			if (this.armasADropear[i] == null) {
 				armasADropear[i] = new Arma(nombresDeArma[this.seleccionValorArma()],
 						valoresDeArma[this.seleccionValorArma()], this.valoresDeArma[this.seleccionValorArma()]);
 			}
@@ -83,7 +83,13 @@ public class Juego {
 		this.heroePrincipal = heroePrincipal;
 	}
 	
-	public Arma verificarArmaEnPosicion(int posicion) {
-		return this.armasADropear[posicion];
+	public Boolean verificarArmaEnPosicion(int posicion) {
+		Boolean verificar=false;;
+		if(this.armasADropear[posicion]!=null) {
+			verificar=true;
+		}
+		return verificar;
 	}
+	
+	
 }
