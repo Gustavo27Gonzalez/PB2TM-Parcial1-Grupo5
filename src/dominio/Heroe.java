@@ -13,7 +13,6 @@ public class Heroe extends Personaje {
 	}
 	public void agregarArma (Arma arma) {
 		inventario[1]= arma;
-		
 	}
 	
 
@@ -58,6 +57,15 @@ public class Heroe extends Personaje {
 		}
 		return daño;
 	}
+	
+	public void verInventario() {
+		
+		for(int i = 0; i<inventario.length; i++) {
+		if(inventario[i] != null) {
+			inventario[i].getNombre();
+		}
+	}
+}
 	
 	public void eleccionDeClase(Integer opcion) {
 		

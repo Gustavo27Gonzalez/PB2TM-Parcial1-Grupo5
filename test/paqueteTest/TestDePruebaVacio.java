@@ -137,4 +137,16 @@ public class TestDePruebaVacio {
 		
 		
 	}
+	
+	// ESTE TEST FUE PROBADO SIN LA PROBABILIDAD DE CRITICO APLICADA
+	@Test
+	public void queSePuedaCrearUnEnemigoParaLaBatalla() {
+		
+		Juego nuevo = new Juego("Mago", 1);
+		
+		nuevo.crearEnemigo();
+		
+		assertTrue(nuevo.pelea(nuevo.getHeroePrincipal(), nuevo.enemigoAPelear()));
+		
+	}
 }
