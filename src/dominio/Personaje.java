@@ -4,7 +4,7 @@ public abstract class Personaje {
 			
 	private Integer puntosDeVida;
 	private Integer puntosDeAtaque;
-	private Double probabilidadDeCritico;
+	private Integer cadaTantosAtaquesNormalesLanzaUnAtaqueCritico;
 	private Integer puntosDeDefensa;
 	
 	public Integer getPuntosDeDefensa() {
@@ -25,22 +25,13 @@ public abstract class Personaje {
 	public void setPuntosDeAtaque(Integer puntosDeAtaque) {
 		this.puntosDeAtaque = puntosDeAtaque;
 	}
-	public Double getProbabilidadDeCritico() {
-		return probabilidadDeCritico;
+	public Integer getCadaTantosAtaquesNormalesLanzaUnAtaqueCritico() {
+		return cadaTantosAtaquesNormalesLanzaUnAtaqueCritico;
 	}
-	public void setProbabilidadDeCritico(Double probabilidadDeCritico) {
-		this.probabilidadDeCritico = probabilidadDeCritico;
+	public void setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(Integer ataqueCriticoCadaXataques) {
+		this.cadaTantosAtaquesNormalesLanzaUnAtaqueCritico = ataqueCriticoCadaXataques;
 	}
 	
-	public void atacar(Personaje objetivo) {
-		Integer dañoRealizado=this.puntosDeAtaque-objetivo.getPuntosDeDefensa();
-		//if (Math.random()<=this.getProbabilidadDeCritico()) {
-		//	dañoRealizado*=2;
-		//}
-		if (dañoRealizado<0) {
-			dañoRealizado=0;
-		}
-		objetivo.setPuntosDeVida(objetivo.getPuntosDeVida()-dañoRealizado);
-	}
+	public abstract void atacar(Personaje objetivo);
 	
 }
