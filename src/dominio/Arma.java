@@ -17,12 +17,17 @@ public class Arma {
 		eleccionPrincipiante(eleccionPrincipiante);
 	}
 
-	public String getNombre() {
+	public String setNombre() {
 		return nombre;
 	}
 
 	public Integer getSumaAtaque() {
 		return sumaAtaque;
+	}
+	
+	public void setSumaAtaque(Integer a) {
+		
+		this.sumaAtaque = a;
 	}
 
 	public Integer getSumaDefensa() {
@@ -52,28 +57,33 @@ public class Arma {
 			this.setSumaAtaque(9);
 			this.setSumaDefensa(1);
 			break;
+		
 		case 2:
 			this.setNombre("Lucero de paladin");
 			this.setSumaAtaque(3);
 			this.setSumaDefensa(7);
 			break;
+		
 		case 3:
 			this.setNombre("Dagas de asesino");
 			this.setSumaAtaque(7);
 			this.setSumaDefensa(3);
 			break;
+		
 		case 4:
 			this.setNombre("Espada y escudo de caballero");
 			this.setSumaAtaque(5);
 			this.setSumaDefensa(5);
 			break;
+		
 		default:
 			this.setNombre("Manos desnudas");
 			this.setSumaAtaque(1);
 			this.setSumaDefensa(1);
 			break;
-		}
+		
 	}
+}
 	
 
 
