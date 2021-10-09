@@ -28,7 +28,6 @@ public class MenuPrincipal {
 	private static void menuPrincipal(Juego partida) {
 		
 		Heroe nuevo = new Heroe(null, 0);
-		
 		Scanner teclado = new Scanner(System.in);
 		String nombre;
 		Integer seleccionClase;
@@ -36,7 +35,7 @@ public class MenuPrincipal {
 		System.out.println("\t\tMenu de inicio");
 		System.out.println("\t\tIngrese su nombre");
 		
-		nombre = teclado.next();
+		nombre = teclado.nextLine();
 		nuevo.setNombre(nombre);
 		
 		
@@ -47,7 +46,7 @@ public class MenuPrincipal {
 				+ "4 -> Caballero\n"
 				+ "5 -> Default\n");
 		
-		seleccionClase = teclado.nextInt();
+		seleccionClase = Integer.parseInt(teclado.nextLine());
 	
 		partida.setHeroePrincipal(nuevo);
 		partida.getHeroePrincipal().eleccionDeClase(seleccionClase);
@@ -90,7 +89,7 @@ public class MenuPrincipal {
 			back = 3;
 			break;
 		default:
-				break;
+				System.out.println("Error, seleccione otra opcion");
 		}
 		
 		return back;

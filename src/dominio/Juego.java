@@ -1,7 +1,5 @@
 package dominio;
 
-import java.util.Iterator;
-
 public class Juego {
 
 	private Heroe heroePrincipal;

@@ -31,25 +31,18 @@ public abstract class Personaje {
 	public void setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(Integer ataqueCriticoCadaXataques) {
 		this.cadaTantosAtaquesNormalesLanzaUnAtaqueCritico = ataqueCriticoCadaXataques;
 	}
-
-	public Integer getVidaMaxima() {
-		return vidaMaxima;
-	}
-	public void setVidaMaxima(Integer vidaMaxima) {
-		this.vidaMaxima = vidaMaxima;
-	}
 	
-	public void atacar(Personaje objetivo) {
-		//ATAQUE DEFAULT SIN AGREGAR
-		Integer da�oRealizado=this.puntosDeAtaque-objetivo.getPuntosDeDefensa();
-		//if (Math.random()<=this.getProbabilidadDeCritico()) {
-		//	da�oRealizado*=2;
-		//}
-		if (da�oRealizado<0) {
-			da�oRealizado=0;
-		}
-		objetivo.setPuntosDeVida(objetivo.getPuntosDeVida()-da�oRealizado);
-	}
+//	public void atacar(Personaje objetivo) {
+//		//ATAQUE DEFAULT SIN AGREGAR
+//		Integer danoRealizado=this.puntosDeAtaque-objetivo.getPuntosDeDefensa();
+//		//if (Math.random()<=this.getProbabilidadDeCritico()) {
+//		//	da�oRealizado*=2;
+//		//}
+//		if (danoRealizado<0) {
+//			danoRealizado=0;
+//		}
+//		objetivo.setPuntosDeVida(objetivo.getPuntosDeVida()-danoRealizado);
+//	}
 	
 	public abstract void atacar(Personaje objetivo);
 	
