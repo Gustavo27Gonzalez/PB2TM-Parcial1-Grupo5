@@ -5,14 +5,15 @@ public class Heroe extends Personaje {
 	private String nombre;
 	private Arma[] inventario;
 	private ClaseDeHeroe clase;
-	private Integer contadorDeAtaques;
-	private final Integer BONUSATAQUECRITICO;
 
-	public Heroe(String nombre, int eleccionClase) {
+	private Integer contadorDeAtaques;
+	private Integer BONUSATAQUECRITICO;
+
+	public Heroe (String nombre, int eleccionClase) {
 		this.nombre = nombre;
 		inventario = new Arma[10];
-
 		eleccionDeClase(eleccionClase);
+
 	}
 	public void agregarArma (Arma arma) {
 		for (int i = 0; i < inventario.length; i++) {
@@ -24,15 +25,6 @@ public class Heroe extends Personaje {
 		}
 		
 	}
-	
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 
 	public ClaseDeHeroe getClase() {
 		return clase;
@@ -41,51 +33,20 @@ public class Heroe extends Personaje {
 	public void setClase(ClaseDeHeroe clase) {
 		this.clase = clase;
 	}
-	//@Override
-	public void atacar(Personaje objetivo) {
-	Integer da�oRealizado= (getPuntosDeAtaque() + obtenerDa�oDeArmas()) - objetivo.getPuntosDeDefensa();
-	Double multiplicadorMomentaneo= 1.7;
-	if (Math.random()<= getProbabilidadDeCritico()) {
-		da�oRealizado= (int)(da�oRealizado* multiplicadorMomentaneo);
-	}
-	if (da�oRealizado<0) {
-		da�oRealizado=0;
-	}
-	objetivo.setPuntosDeVida(objetivo.getPuntosDeVida()-da�oRealizado);
-	if (objetivo.getPuntosDeVida() == 0) {
-		setPuntosDeVida(getVidaMaxima());
-	}	
-	}
-	
-	public Integer obtenerDa�oDeArmas () {
-		Integer da�o=0;
-		for (int i = 0; i < inventario.length; i++) {	
-			if(inventario[i]!=null) {
-				da�o += inventario[i].getSumaAtaque();
-		}
-		}
-		return da�o;
-	}
 	
 	public String verInventario() {
-		
 		String aux = " ";
-		String nombres = " ";
+		String nombre = " ";
 		for(int i = 0; i<inventario.length; i++) {
 		if(inventario[i] != null) {
-			
 			aux += inventario[i].getNombre()+"\n";
 		}
 	}
 		return aux;
 }
 	
-	public void eleccionDeClase(Integer opcion) {
-		
-		
-		switch (opcion) {
-		case 1:{  // MAGO
 
+	public void eleccionDeClase(Integer eleccionClase) {
 		this.contadorDeAtaques=0;
 		switch (eleccionClase) {
 		case 1: { // MAGO
@@ -95,20 +56,21 @@ public class Heroe extends Personaje {
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(4);
 			this.setPuntosDeDefensa(20);
 			this.BONUSATAQUECRITICO = 5;
+      
 			clase = ClaseDeHeroe.MAGO;
-			Arma vacia = new Arma(opcion);
+			Arma vacia = new Arma(eleccionClase);
 			this.agregarArma(vacia);
 			break;
 		}
-		
 		case 2:{  // PALADIN
 			this.setPuntosDeAtaque(15);
 			this.setPuntosDeVida(60);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(6);
 			this.setPuntosDeDefensa(25);
 			this.BONUSATAQUECRITICO = 3;
+      
 			clase = ClaseDeHeroe.PALADIN;
-			Arma vacia = new Arma(opcion);
+			Arma vacia = new Arma(eleccionClase);
 			this.agregarArma(vacia);
 			break;
 		}
@@ -119,34 +81,36 @@ public class Heroe extends Personaje {
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(5);
 			this.setPuntosDeDefensa(5);
 			this.BONUSATAQUECRITICO = 2;
+      
 			clase = ClaseDeHeroe.ASESINO;
-			Arma vacia = new Arma(opcion);
+			Arma vacia = new Arma(eleccionClase);
 			this.agregarArma(vacia);
 			break;
 		}
-		
 		case 4:{  // CABALLERO
 			this.setPuntosDeAtaque(20);
 			this.setPuntosDeVida(50);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(3);
 			this.setPuntosDeDefensa(20);
 			this.BONUSATAQUECRITICO = 4;
+      
 			clase = ClaseDeHeroe.CABALLERO;
-			Arma vacia = new Arma(opcion);
+			Arma vacia = new Arma(eleccionClase);
 			this.agregarArma(vacia);
 			break;
-		}
-		
+		}	
 		default:
 			this.setPuntosDeAtaque(20);
 			this.setPuntosDeVida(50);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(3);
 			this.setPuntosDeDefensa(20);
 			this.BONUSATAQUECRITICO = 4;
+        
 			clase = ClaseDeHeroe.CABALLERO;
-			Arma vacia = new Arma(opcion);
+      Arma vacia = new Arma(eleccionClase);
 			this.agregarArma(vacia);
-		
+			break;
+		}
 	}
 }
 
@@ -166,12 +130,14 @@ public class Heroe extends Personaje {
 		this.clase = clase;
 	}
 
+
 	public Integer getContadorDeAtaques() {
 		return contadorDeAtaques;
 	}
 
 	public void setContadorDeAtaques(Integer contadorDeAtaques) {
 		this.contadorDeAtaques = contadorDeAtaques;
+
 	}
 
 	public Arma[] getInventario() {
@@ -189,6 +155,16 @@ public class Heroe extends Personaje {
 		}
 	}
 	
+	private Integer sumaDeDanioDeArmasEnInventario() {
+		Integer suma=0;
+		for (int i = 0; i < this.inventario.length; i++) {
+			if(this.inventario[i]!=null) {
+				suma += this.inventario[i].getSumaAtaque();
+			}
+		}
+		return suma;
+	}
+  
 	public boolean elInventarioEstaLLeno() {
 		boolean estaLLeno = false;
 		int contadorObjetosInventario = 0;
@@ -204,17 +180,7 @@ public class Heroe extends Personaje {
 			estaLLeno = false;
 		}
 		return estaLLeno;
-	}
-	
-	private Integer sumaDeDañoDeArmasEnInventario() {
-		Integer suma=0;
-		for (int i = 0; i < this.inventario.length; i++) {
-			if(this.inventario[i]!=null) {
-				suma += this.inventario[i].getSumaAtaque();
-			}
-		}
-		return suma;
-	}
+  }
 
 	@Override
 	public void atacar(Personaje objetivo) {
@@ -233,7 +199,6 @@ public class Heroe extends Personaje {
 				this.setPuntosDeVida(getPuntosDeVida() - ( objetivo.getPuntosDeDefensa() - dañoRealizado ));
 			}
 		}
-		
 	}
 
 	
