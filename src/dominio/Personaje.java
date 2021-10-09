@@ -32,15 +32,19 @@ public abstract class Personaje {
 	public void setProbabilidadDeCritico(Double probabilidadDeCritico) {
 		this.probabilidadDeCritico = probabilidadDeCritico;
 	}
+<<<<<<< Updated upstream
 	public Integer getVidaMaxima() {
 		return vidaMaxima;
 	}
 	public void setVidaMaxima(Integer vidaMaxima) {
 		this.vidaMaxima = vidaMaxima;
 	}
+=======
+>>>>>>> Stashed changes
 	
 	public Integer atacar(Personaje objetivo) {
 		//ATAQUE DEFAULT SIN AGREGAR
+<<<<<<< Updated upstream
 		Integer dañoRealizado=this.puntosDeAtaque-objetivo.getPuntosDeDefensa();
 		//if (Math.random()<=this.getProbabilidadDeCritico()) {
 		//	dañoRealizado*=2;
@@ -66,4 +70,16 @@ public abstract class Personaje {
 	
 	
 	
+=======
+		Integer danioRealizado=this.puntosDeAtaque-objetivo.getPuntosDeDefensa();
+		//if (Math.random()<=this.getProbabilidadDeCritico()) {
+		//	danioRealizado*=2;
+		//}
+		if (danioRealizado<0) {
+			danioRealizado=0;
+		}
+		objetivo.setPuntosDeVida(objetivo.getPuntosDeVida()-danioRealizado);
+	}
+>>>>>>> Stashed changes
 }
+
