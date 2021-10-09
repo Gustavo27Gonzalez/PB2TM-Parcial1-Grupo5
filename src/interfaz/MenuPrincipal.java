@@ -13,7 +13,6 @@ public class MenuPrincipal {
 		
 		Integer exitFlag = 0;
 		Juego partidaNueva = new Juego(null, 0);
-		Enemigo enemigoGenerico;
 		Jefe jefeFinal;
 		
 		menuPrincipal(partidaNueva);
