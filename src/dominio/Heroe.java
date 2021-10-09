@@ -103,11 +103,12 @@ public class Heroe extends Personaje {
 		}
 		
 		default:
-			this.setPuntosDeAtaque(20);
-			this.setPuntosDeVida(50);
-			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(3);
-			this.setPuntosDeDefensa(20);
-			this.BONUSATAQUECRITICO = 4;
+//			this.setPuntosDeAtaque(20);
+//			this.setPuntosDeVida(50);
+//			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(3);
+//			this.setPuntosDeDefensa(20);
+//			this.BONUSATAQUECRITICO = 4;
+			break;
 
 		
 	}

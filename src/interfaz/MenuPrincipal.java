@@ -44,15 +44,21 @@ public class MenuPrincipal {
 				+ "2 -> Paladin\n"
 				+ "3 -> Asesino\n"
 				+ "4 -> Caballero\n"
-				+ "5 -> Default\n");
+				);
 		
 		seleccionClase = Integer.parseInt(teclado.nextLine());
 	
 		partida.setHeroePrincipal(nuevo);
+		if(seleccionClase > 0 && seleccionClase <4) {
 		partida.getHeroePrincipal().eleccionDeClase(seleccionClase);
 		
 		System.out.println("Se ha creado el heroe: " + partida.getHeroePrincipal().getNombre() + ", de clase: " + partida.getHeroePrincipal().getClase());
 		System.out.println("***************************************************");
+		}
+		else {
+			System.out.println("Error al crear la clase, Seleccione un numero de entre las opciones");
+			menuPrincipal(partida);
+		}
 	}
 
 	
@@ -68,7 +74,7 @@ public class MenuPrincipal {
 	
 	private static Integer seleccionesMenu(Juego partida) {
 		Scanner teclado = new Scanner(System.in);
-		Integer opcion = teclado.nextInt();
+		Integer opcion = Integer.parseInt(teclado.nextLine());
 		Integer back = 0;
 		
 		switch(opcion) {
@@ -77,7 +83,8 @@ public class MenuPrincipal {
 			if(partida.pelea(partida.getHeroePrincipal(), partida.enemigoAPelear())) {
 				System.out.println("Ganaste!!!");
 				break;
-			}else {
+			}
+			else {
 			System.out.println("Perdiste!!");
 			back = 3;
 			break;
@@ -89,7 +96,8 @@ public class MenuPrincipal {
 			back = 3;
 			break;
 		default:
-				System.out.println("Error, seleccione otra opcion");
+				break;
+				
 		}
 		
 		return back;
