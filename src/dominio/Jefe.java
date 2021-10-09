@@ -2,13 +2,17 @@ package dominio;
 
 public class Jefe extends Personaje{
 	
+	private Integer ataque;
+	private Integer defensa;
+	private Integer cadaTantosAtaquesNormalesLanzaUnAtaqueCritico;
+	private Integer puntosDeVida;
+	private Integer contadorDeAtaques;
+	private final Integer BONUSATAQUECRITICO;
+	
 	public Jefe (Integer ataque, Integer defensa, Integer vida) {
 		this.setPuntosDeAtaque(ataque);
 		this.setPuntosDeDefensa(defensa);
 		this.setPuntosDeVida(vida);
-<<<<<<< Updated upstream
-		this.setProbabilidadDeCritico(0.2);
-=======
 		this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(3);
 		this.contadorDeAtaques = 0;
 		this.BONUSATAQUECRITICO = 7;
@@ -55,22 +59,21 @@ public class Jefe extends Personaje{
 
 	@Override
 	public void atacar(Personaje objetivo) {
-		Integer danioRealizado = 0;
+		Integer dañoRealizado = 0;
 		if ( ( ++this.contadorDeAtaques ) == this.getCadaTantosAtaquesNormalesLanzaUnAtaqueCritico() ) {
-			danioRealizado = ( this.BONUSATAQUECRITICO * this.getPuntosDeAtaque() ) - objetivo.getPuntosDeDefensa(); 
+			dañoRealizado = ( this.BONUSATAQUECRITICO * this.getPuntosDeAtaque() ) - objetivo.getPuntosDeDefensa(); 
 			this.contadorDeAtaques = 0;
 		}else {
-			danioRealizado = this.getPuntosDeAtaque() - objetivo.getPuntosDeDefensa(); 
+			dañoRealizado = this.getPuntosDeAtaque() - objetivo.getPuntosDeDefensa(); 
 			this.contadorDeAtaques++;
 		}
-		if(danioRealizado > 0) {
-			objetivo.setPuntosDeVida(objetivo.getPuntosDeVida() - danioRealizado);
+		if(dañoRealizado > 0) {
+			objetivo.setPuntosDeVida(objetivo.getPuntosDeVida() - dañoRealizado);
 		}else {
-			if(danioRealizado < 0) {
-				this.setPuntosDeVida(getPuntosDeVida() - ( objetivo.getPuntosDeDefensa() - danioRealizado ));
+			if(dañoRealizado < 0) {
+				this.setPuntosDeVida(getPuntosDeVida() - ( objetivo.getPuntosDeDefensa() - dañoRealizado ));
 			}
 		}
 		
->>>>>>> Stashed changes
 	}
 }
