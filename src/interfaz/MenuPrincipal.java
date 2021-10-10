@@ -21,10 +21,10 @@ package interfaz;
 			} while (!exitFlag);
 
 			System.out.println("\n\t...Saliendo del juego...");
+			System.out.println("\tTotal de batallas ganadas: " + partidaNueva.getBatallasGanadasEnTotal());	
+
 		}
 			
-			
-		
 			
 		
 		private static Juego menuPrincipal() {
@@ -143,10 +143,11 @@ package interfaz;
 		private static Boolean resultadoDePeleaContraElEnemigoComun(Juego partida, Heroe jugador, Enemigo enemigo) {
 
 			if (partida.pelea(partida.getHeroePrincipal(), partida.enemigoAPelear())) {
+				partida.setBatallasGanadasEnTotal(partida.getBatallasGanadasEnTotal() + 1);
 				System.out.println("\t-> Has vencido al mounstro <-\n");
 				return true;
 			} else {
-				System.out.println("\tCaiste en batalla..." + " GAME OVER!!");
+				System.out.println("\tCaiste en batalla..." + " GAME OVER!!\n");
 				return false;
 
 			}
@@ -156,10 +157,11 @@ package interfaz;
 
 			System.out.println("\t...BOSS INCOMING...\n");
 			if (partida.pelea(partida.getHeroePrincipal(), partida.jefeAPelear())) {
+				partida.setBatallasGanadasEnTotal(partida.getBatallasGanadasEnTotal() + 1);
 				System.out.println("\t-> Has vencido al JEFE <-\n");
 				return true;
 			} else {
-				System.out.println("\tCaiste en batalla..." + "GAME OVER!!");
+				System.out.println("\tCaiste en batalla..." + "GAME OVER!!\n");
 				return false;
 
 			}
@@ -167,3 +169,4 @@ package interfaz;
 		
 		
 	}
+		

@@ -9,6 +9,8 @@ public class Juego {
 	private Enemigo[] enemigos;
 	private Jefe[] jefes;
 	private Integer contadorDeBoss;
+	private Integer batallasGanadasEnTotal;
+
 
 
 	public Juego(String nombre, int clase) {
@@ -21,7 +23,8 @@ public class Juego {
 		jefes = new Jefe[100];
 
 		this.crearArmas();
-		this.contadorDeBoss = 0;
+		this.setContadorDeBoss(0);
+		this.setBatallasGanadasEnTotal(0);
 	}
 
 	public void crearArmas() {
@@ -132,6 +135,14 @@ public class Juego {
 
 	public void setContadorDeBoss(Integer contadorDeBoss) {
 		this.contadorDeBoss = contadorDeBoss;
+	}
+	
+	public Integer getBatallasGanadasEnTotal() {
+		return batallasGanadasEnTotal;
+	}
+
+	public void setBatallasGanadasEnTotal(Integer batallasGanadasEnTotal) {
+		this.batallasGanadasEnTotal = batallasGanadasEnTotal;
 	}
 
 	public void dropearArma(Heroe personaje) {

@@ -53,7 +53,7 @@ public class Heroe extends Personaje {
 			this.setPuntosDeAtaque(70);
 			this.setPuntosDeVida(30);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(4);
-			this.setPuntosDeDefensa(40);
+			this.setPuntosDeDefensa(10);
 			this.BONUSATAQUECRITICO = 5;
       
 			clase = ClaseDeHeroe.MAGO;
@@ -65,7 +65,7 @@ public class Heroe extends Personaje {
 			this.setPuntosDeAtaque(50);
 			this.setPuntosDeVida(80);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(6);
-			this.setPuntosDeDefensa(60);
+			this.setPuntosDeDefensa(30);
 			this.BONUSATAQUECRITICO = 3;
       
 			clase = ClaseDeHeroe.PALADIN;
@@ -76,9 +76,9 @@ public class Heroe extends Personaje {
 		
 		case 3:{ // ASESINO
 			this.setPuntosDeAtaque(55);
-			this.setPuntosDeVida(40);
+			this.setPuntosDeVida(30);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(2);
-			this.setPuntosDeDefensa(25);
+			this.setPuntosDeDefensa(30);
 			this.BONUSATAQUECRITICO = 2;
       
 			clase = ClaseDeHeroe.ASESINO;
