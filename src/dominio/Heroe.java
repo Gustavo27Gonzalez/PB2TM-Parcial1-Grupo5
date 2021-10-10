@@ -54,8 +54,8 @@ public class Heroe extends Personaje {
 		this.contadorDeAtaques = 0;
 		switch (opcion) {
 		case 1: { // MAGO
-			// CAMBIE EL VALOR DEL ATAQUE PARA COMPROBAR EL FUNCIONAMIENTO DEL LA BATALLA
-			this.setPuntosDeAtaque(11);
+			// CAMBIE EL VALOR DEL ATAQUE PARA COMPROBAR EL FUNCIONAMIENTO DEL LA BATALLA VALOR INICIAL 11
+			this.setPuntosDeAtaque(100);
 			this.setPuntosDeVida(50);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(4);
 			this.setPuntosDeDefensa(20);
