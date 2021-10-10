@@ -1,5 +1,7 @@
 package dominio;
 
+import java.util.Iterator;
+
 public class Juego {
 
 	private Heroe heroePrincipal;
@@ -49,10 +51,12 @@ public class Juego {
 		Boolean victoria = false;
 		while (heroePrincipal.getPuntosDeVida() > 0) {
 			heroePrincipal.atacar(enemigo);
-			enemigo.atacar(heroePrincipal);
 			if (enemigo.getPuntosDeVida() <= 0) {
 				victoria = true;
-			break;}
+			break;
+			}
+			enemigo.atacar(heroePrincipal);
+			
 		}
 		return victoria;
 	}
@@ -64,6 +68,19 @@ public class Juego {
 				break;
 			}
 		}
+	}
+	
+	public Enemigo enemigoAPelear() {
+		
+		Integer enemigosNoNull = 0;
+		Enemigo enemigoARetornar = null;
+		for (int i = 0; i < enemigos.length; i++) {
+			if(enemigos[i]!= null) {
+				enemigosNoNull++;
+			}
+		}
+		enemigoARetornar = enemigos[enemigosNoNull - 1];
+		return enemigoARetornar;
 	}
 	
 	public void crearJefe() {
@@ -90,6 +107,5 @@ public class Juego {
 		}
 		return verificar;
 	}
-	
 	
 }
