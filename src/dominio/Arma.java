@@ -17,7 +17,9 @@ public class Arma {
 		eleccionPrincipiante(eleccionPrincipiante);
 	}
 
-	public String setNombre() {
+
+	
+	public String getNombre() {
 		return nombre;
 	}
 
@@ -42,11 +44,6 @@ public class Arma {
 	public void setNombre(String nombre) {
 		
 		this.nombre = nombre;
-	}
-	
-	public String getNombre() {
-		
-		return this.nombre;
 	}
 	
 	public void eleccionPrincipiante(Integer opcion) {
@@ -83,8 +80,9 @@ public class Arma {
 			break;
 		
 	}
-}
+
 	
 
 
+	}
 }

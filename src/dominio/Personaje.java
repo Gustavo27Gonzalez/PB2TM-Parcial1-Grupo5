@@ -32,17 +32,6 @@ public abstract class Personaje {
 		this.cadaTantosAtaquesNormalesLanzaUnAtaqueCritico = ataqueCriticoCadaXataques;
 	}
 	
-	public void atacar(Personaje objetivo) {
-		//ATAQUE DEFAULT SIN AGREGAR
-		Integer danioRealizado=this.puntosDeAtaque-objetivo.getPuntosDeDefensa();
-		//if (Math.random()<=this.getProbabilidadDeCritico()) {
-		//	danioRealizado*=2;
-		//}
-		if (danioRealizado<0) {
-			danioRealizado=0;
-		}
-		objetivo.setPuntosDeVida(objetivo.getPuntosDeVida()-danioRealizado);
-	}
-  
+	public abstract void atacar(Personaje objetivo);
+	
 }
-
