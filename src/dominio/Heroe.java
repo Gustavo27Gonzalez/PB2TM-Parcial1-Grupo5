@@ -11,7 +11,7 @@ public class Heroe extends Personaje {
 
 	public Heroe (String nombre, int eleccionClase) {
 		this.nombre = nombre;
-		inventario = new Arma[10];
+		inventario = new Arma[11];
 		eleccionDeClase(eleccionClase);
 
 	}

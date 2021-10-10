@@ -131,7 +131,7 @@ package interfaz;
 				partida.crearJefe();
 				if (resultadoDePeleaContraElJefe(partida, partida.getHeroePrincipal(), partida.jefeAPelear())) {
 					partida.setContadorDeBoss(0);
-				
+					partida.dropearArma(partida.getHeroePrincipal());
 				} else {
 					inExitFlag = true;
 				}

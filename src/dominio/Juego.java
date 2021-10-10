@@ -134,5 +134,13 @@ public class Juego {
 		this.contadorDeBoss = contadorDeBoss;
 	}
 
+	public void dropearArma(Heroe personaje) {
+		for (int i = 0; i < armasADropear.length; i++) {
+			if(armasADropear[i]!=null) {
+				personaje.agregarArma(armasADropear[i]);
+				break;
+			}
+		}
+	}
 
 }
