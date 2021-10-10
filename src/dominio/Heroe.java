@@ -193,5 +193,16 @@ public class Heroe extends Personaje {
 		}
 	}
 
+	public String getStatusHeroe() {
+
+        String aux = "";
+        aux += ("\t\tNombre: " + this.getNombre()  + "\n"
+                + "Clase: " + this.getClase() + "\n"
+                + "Puntos de vida: " + this.getPuntosDeVida() + "\n"
+                + "Puntos de ataque: " + this.getPuntosDeAtaque() + "\n"
+                + "Puntos de defensa: " + this.getPuntosDeDefensa() + "\n");
+
+        return aux;
+    }
 	
 }

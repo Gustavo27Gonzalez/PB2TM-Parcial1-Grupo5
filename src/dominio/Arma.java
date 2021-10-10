@@ -17,7 +17,9 @@ public class Arma {
 		eleccionPrincipiante(eleccionPrincipiante);
 	}
 
-	public String setNombre() {
+
+	
+	public String getNombre() {
 		return nombre;
 	}
 
@@ -79,11 +81,8 @@ public class Arma {
 		
 	}
 
-	private void setSumaAtaque(Integer i) {
-		this.sumaAtaque=i;
-		
-	}
 	
 
 
+	}
 }

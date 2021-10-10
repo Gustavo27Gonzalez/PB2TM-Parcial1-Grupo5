@@ -11,15 +11,16 @@ public class Juego {
 	private Enemigo[] enemigos;
 	private Jefe[] jefes;
 
-	public Juego(String nombreHeroe, int numeroClase) {
-		this.heroePrincipal = new Heroe(nombreHeroe, numeroClase);
-		this.armasADropear = new Arma[10];
-		this.nombresDeArma = new String[] { "Espada", "Pistola", "Daga", "Escudo", "Arco" };
-		this.valoresDeArma = new Integer[] { 10, 20, 30, 40, 50 };
-		this.crearArmas();
-		enemigos=new Enemigo[100];
-		jefes=new Jefe[100];
-	}
+	public Juego() {
+        this.armasADropear = new Arma[10];
+        this.nombresDeArma = new String[] { "Espada", "Pistola", "Daga", "Escudo", "Arco" };
+        this.valoresDeArma = new Integer[] { 10, 20, 30, 40, 50 };
+        enemigos = new Enemigo[100];
+        jefes = new Jefe[100];
+
+        this.crearEnemigo();
+        this.crearArmas();
+    }
 
 	public void crearArmas() {
 		for (int i = 0; i < armasADropear.length; i++) {
@@ -83,14 +84,14 @@ public class Juego {
 		return enemigoARetornar;
 	}
 	
-	public void crearJefe() {
-		for (int i = 0; i < jefes.length; i++) {
-			if(enemigos[i]==null) {
-				enemigos[i]=new Enemigo(20, 30, 70);
-				break;
-			}
-		}
-	}
+    public void crearJefe() {
+        for (int i = 0; i < jefes.length; i++) {
+            if (jefes[i] == null) {
+                jefes[i] = new Jefe(20, 30, 70);
+                break;
+            }
+        }
+    }
 
 	public Heroe getHeroePrincipal() {
 		return heroePrincipal;
