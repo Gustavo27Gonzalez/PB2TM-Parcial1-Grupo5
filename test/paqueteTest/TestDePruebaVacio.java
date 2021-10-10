@@ -117,8 +117,16 @@ public class TestDePruebaVacio {
 	public void queSePuedaPelearConUnJefeYElHeroePierda() {
 		Juego juego=new Juego("Mago", 3);
 		Jefe enemigo=new Jefe(50, 10, 80);
-		
-		assertFalse(juego.pelea(juego.getHeroePrincipal(), enemigo));
+		Integer vidaInicialDelHeroe = 30;
+		Integer vidaInicialDelJefe = 80;
+		Integer vidaFinalEsperadaDelHeroeLuegoDePelear = 0;
+		Integer vidaFinalEsperadaDelJefeLuegoDePelear = 10;
+		Integer vidaDelHeroeConGet = juego.getHeroePrincipal().getPuntosDeVida();
+		//juego.pelea(juego.getHeroePrincipal(), enemigo);
+		assertEquals(vidaInicialDelHeroe, vidaDelHeroeConGet);
+		//assertEquals(vidaFinalEsperadaDelHeroeLuegoDePelear, juego.getHeroePrincipal().getPuntosDeVida());
+		//assertEquals(vidaInicialDelJefe, vidaFinalEsperadaDelJefeLuegoDePelear);
+		//assertFalse(juego.pelea(juego.getHeroePrincipal(), enemigo));
 	}
 	
 	@Test
