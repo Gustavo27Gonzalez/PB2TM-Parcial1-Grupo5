@@ -116,7 +116,7 @@ public class Heroe extends Personaje {
 		return estaLLeno;
 	}
 	
-	private Integer sumaDeDañoDeArmasEnInventario() {
+	private Integer sumaDeDanioDeArmasEnInventario() {
 		Integer suma=0;
 		for (int i = 0; i < this.inventario.length; i++) {
 			if(this.inventario[i]!=null) {
@@ -128,19 +128,19 @@ public class Heroe extends Personaje {
 
 	@Override
 	public void atacar(Personaje objetivo) {
-		Integer dañoRealizado = 0;
+		Integer danioRealizado = 0;
 		if ( ( ++this.contadorDeAtaques ) == this.getCadaTantosAtaquesNormalesLanzaUnAtaqueCritico() ) {
-			dañoRealizado = ( ( this.BONUSATAQUECRITICO * this.getPuntosDeAtaque() ) + sumaDeDañoDeArmasEnInventario() ) - objetivo.getPuntosDeDefensa(); 
+			danioRealizado = ( ( this.BONUSATAQUECRITICO * this.getPuntosDeAtaque() ) + sumaDeDanioDeArmasEnInventario() ) - objetivo.getPuntosDeDefensa(); 
 			this.contadorDeAtaques = 0;
 		}else {
-			dañoRealizado = ( this.getPuntosDeAtaque() + sumaDeDañoDeArmasEnInventario() ) - objetivo.getPuntosDeDefensa(); 
+			danioRealizado = ( this.getPuntosDeAtaque() + sumaDeDanioDeArmasEnInventario() ) - objetivo.getPuntosDeDefensa(); 
 			this.contadorDeAtaques++;
 		}
-		if(dañoRealizado > 0) {
-			objetivo.setPuntosDeVida(objetivo.getPuntosDeVida() - dañoRealizado);
+		if(danioRealizado > 0) {
+			objetivo.setPuntosDeVida(objetivo.getPuntosDeVida() - danioRealizado);
 		}else {
-			if(dañoRealizado < 0) {
-				this.setPuntosDeVida(getPuntosDeVida() - ( objetivo.getPuntosDeDefensa() - dañoRealizado ));
+			if(danioRealizado < 0) {
+				this.setPuntosDeVida(getPuntosDeVida() - ( objetivo.getPuntosDeDefensa() - danioRealizado ));
 			}
 		}
 		

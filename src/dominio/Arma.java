@@ -39,11 +39,6 @@ public class Arma {
 		this.nombre = nombre;
 	}
 	
-	public String getNombre() {
-		
-		return this.nombre;
-	}
-	
 	public void eleccionPrincipiante(Integer opcion) {
 		
 		switch(opcion) {
@@ -73,6 +68,11 @@ public class Arma {
 			this.setSumaDefensa(1);
 			break;
 		}
+	}
+
+	private void setSumaAtaque(Integer i) {
+		this.sumaAtaque=i;
+		
 	}
 	
 
