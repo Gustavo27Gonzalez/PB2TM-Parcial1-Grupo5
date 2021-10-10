@@ -9,14 +9,14 @@ public class Juego {
 	private Enemigo[] enemigos;
 	private Jefe[] jefes;
 
-	public Juego(String nombreHeroe, int numeroClase) {
-		this.heroePrincipal = new Heroe(nombreHeroe, numeroClase);
+	public Juego(/* String nombreHeroe, int numeroClase */) {
+//		this.heroePrincipal = new Heroe(nombreHeroe, numeroClase);
 		this.armasADropear = new Arma[10];
 		this.nombresDeArma = new String[] { "Espada", "Pistola", "Daga", "Escudo", "Arco" };
 		this.valoresDeArma = new Integer[] { 10, 20, 30, 40, 50 };
 		this.crearArmas();
-		enemigos=new Enemigo[100];
-		jefes=new Jefe[100];
+		enemigos = new Enemigo[100];
+		jefes = new Jefe[100];
 	}
 
 	public void crearArmas() {
@@ -51,40 +51,55 @@ public class Juego {
 			heroePrincipal.atacar(enemigo);
 			if (enemigo.getPuntosDeVida() <= 0) {
 				victoria = true;
-			break;
+				break;
 			}
 			enemigo.atacar(heroePrincipal);
-			
+
 		}
 		return victoria;
 	}
-	
+
 	public void crearEnemigo() {
 		for (int i = 0; i < enemigos.length; i++) {
-			if(enemigos[i]==null) {
-				enemigos[i]=new Enemigo(this.valoresDeArma[this.seleccionValorArma()],this.valoresDeArma[this.seleccionValorArma()],this.valoresDeArma[this.seleccionValorArma()]);
+			if (enemigos[i] == null) {
+				enemigos[i] = new Enemigo(this.valoresDeArma[this.seleccionValorArma()],
+						this.valoresDeArma[this.seleccionValorArma()], this.valoresDeArma[this.seleccionValorArma()]);
 				break;
 			}
 		}
 	}
-	
+
 	public Enemigo enemigoAPelear() {
-		
+
 		Integer enemigosNoNull = 0;
 		Enemigo enemigoARetornar = null;
 		for (int i = 0; i < enemigos.length; i++) {
-			if(enemigos[i]!= null) {
+			if (enemigos[i] != null) {
 				enemigosNoNull++;
 			}
 		}
 		enemigoARetornar = enemigos[enemigosNoNull - 1];
 		return enemigoARetornar;
 	}
-	
+
+	public Jefe jefeAPelear() {
+
+		Integer jefesNoNull = 0;
+		Jefe jefeARetornar = null;
+		for (int i = 0; i < jefes.length; i++) {
+			if (jefes[i] != null) {
+				jefesNoNull++;
+			}
+		}
+		jefeARetornar = jefes[jefesNoNull - 1];
+		return jefeARetornar;
+
+	}
+
 	public void crearJefe() {
 		for (int i = 0; i < jefes.length; i++) {
-			if(enemigos[i]==null) {
-				enemigos[i]=new Enemigo(20, 30, 70);
+			if (jefes[i] == null) {
+				jefes[i] = new Jefe(20, 30, 70);
 				break;
 			}
 		}
@@ -97,13 +112,14 @@ public class Juego {
 	public void setHeroePrincipal(Heroe heroePrincipal) {
 		this.heroePrincipal = heroePrincipal;
 	}
-	
+
 	public Boolean verificarArmaEnPosicion(int posicion) {
-		Boolean verificar=false;;
-		if(this.armasADropear[posicion]!=null) {
-			verificar=true;
+		Boolean verificar = false;
+		;
+		if (this.armasADropear[posicion] != null) {
+			verificar = true;
 		}
 		return verificar;
 	}
-	
+
 }
