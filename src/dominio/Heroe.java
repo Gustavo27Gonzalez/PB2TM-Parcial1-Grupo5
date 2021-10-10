@@ -1,5 +1,7 @@
 package dominio;
 
+import java.util.Arrays;
+
 public class Heroe extends Personaje {
 
 	private String nombre;
@@ -146,8 +148,48 @@ public class Heroe extends Personaje {
 		
 	}
 
-	
-	
-	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((BONUSATAQUECRITICO == null) ? 0 : BONUSATAQUECRITICO.hashCode());
+		result = prime * result + ((clase == null) ? 0 : clase.hashCode());
+		result = prime * result + ((contadorDeAtaques == null) ? 0 : contadorDeAtaques.hashCode());
+		result = prime * result + Arrays.hashCode(inventario);
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Heroe other = (Heroe) obj;
+		if (BONUSATAQUECRITICO == null) {
+			if (other.BONUSATAQUECRITICO != null)
+				return false;
+		} else if (!BONUSATAQUECRITICO.equals(other.BONUSATAQUECRITICO))
+			return false;
+		if (clase != other.clase)
+			return false;
+		if (contadorDeAtaques == null) {
+			if (other.contadorDeAtaques != null)
+				return false;
+		} else if (!contadorDeAtaques.equals(other.contadorDeAtaques))
+			return false;
+		if (!Arrays.equals(inventario, other.inventario))
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		return true;
+	}
+
 	
 }

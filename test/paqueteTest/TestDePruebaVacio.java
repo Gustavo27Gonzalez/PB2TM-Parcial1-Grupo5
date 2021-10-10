@@ -79,4 +79,20 @@ public class TestDePruebaVacio {
 		assertEquals(vidaMagoEsperada, mago.getPuntosDeVida());
 	}
 	
+	@Test
+	public void queSePuedaCrearUnHeroe() {
+		Heroe mago = new Heroe("Dumbledore", 1);
+		assertNotNull(mago);
+	}
+	
+	@Test
+	public void que2HeroesDelMismoTipoConElMismoNombreYatributosSonIgualesY2HeroesDelMismoTipoYatributosPeroNombresDistintosSonDistintos() {
+		Heroe mago1 = new Heroe ("Gandalf", 1);
+		Heroe mago2 = new Heroe ("Gandalf", 1);
+		assertEquals(mago1, mago2);
+		Heroe caballero1 = new Heroe ("Caballero negro", 4);
+		Heroe caballero2 = new Heroe ("Arturo", 4);
+		assertNotEquals(caballero1, caballero2);
+	}
+	
 }
