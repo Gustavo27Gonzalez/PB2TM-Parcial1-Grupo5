@@ -140,6 +140,5 @@ public class TestDePruebaVacio {
 		assertTrue(juego.verificarArmaEnPosicion(7));
 		assertTrue(juego.verificarArmaEnPosicion(8));
 		assertTrue(juego.verificarArmaEnPosicion(9));
-
 	}
 }

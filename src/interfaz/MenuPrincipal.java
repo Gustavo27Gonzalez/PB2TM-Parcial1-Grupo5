@@ -62,7 +62,8 @@ public class MenuPrincipal {
 
 		System.out.println("1 - Combate a muerte");
 		System.out.println("2 - Ver inventario de armas");
-		System.out.println("3 - Salir");
+		System.out.println("3 - Ver status del heroe");
+		System.out.println("4 - Salir");
 
 	}
 
@@ -75,7 +76,6 @@ public class MenuPrincipal {
 		switch (opcion) {
 		case 1: {
 			do {
-				partida.crearEnemigo();
 				if (resultadoDePeleaContraElEnemigoComun(partida, partida.getHeroePrincipal(),
 						partida.enemigoAPelear())) {
 					contadorParaElJefe--;
@@ -85,29 +85,18 @@ public class MenuPrincipal {
 				contadorParaElJefe = 5;
 				inExitFlag = true;
 				break;
-			} while (contadorParaElJefe >= 1);
+			} while (contadorParaElJefe > 0);
 			break;
-
-//			if (contadorParaElJefe <= 5) {
-//				partida.crearEnemigo();
-//				if (resultadoDePeleaContraElEnemigoComun(partida, partida.getHeroePrincipal(),
-//						partida.enemigoAPelear())) {
-//					contadorParaElJefe++;
-//					break;
-//				}
-//			} else {
-//				contadorParaElJefe = 0;
-//				partida.crearJefe();
-//				
-//			}
-//			contadorParaElJefe = 0;
-//			inExitFlag = true;
-//			break;
 		}
-		case 2:
+		case 2:{
 			System.out.println(partida.getHeroePrincipal().verInventario());
 			break;
-		case 3:
+		}
+		case 3:{
+			System.out.println(partida.getHeroePrincipal().getStatusHeroe());
+			break;
+		}
+		case 4:
 			inExitFlag = true;
 			break;
 		default:
@@ -125,11 +114,12 @@ public class MenuPrincipal {
 			System.out.println("\t\tHas vencido al mounstro\n");
 			return true;
 		} else {
-			System.out.println("\tCaiste en batalla...\n" + "\t\tGAME OVER!!");
+			System.out.println("\tCaiste en batalla...\n" + "\tGAME OVER!!");
 			return false;
 
 		}
 	}
+	
 
 //	private static Boolean resultadoDePeleaContraJefe(Juego partida, Heroe jugador, Jefe enemigo) {
 //

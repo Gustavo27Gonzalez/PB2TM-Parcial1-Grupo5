@@ -13,9 +13,11 @@ public class Juego {
 		this.armasADropear = new Arma[10];
 		this.nombresDeArma = new String[] { "Espada", "Pistola", "Daga", "Escudo", "Arco" };
 		this.valoresDeArma = new Integer[] { 10, 20, 30, 40, 50 };
-		this.crearArmas();
 		enemigos = new Enemigo[100];
 		jefes = new Jefe[100];
+		
+		this.crearEnemigo();
+		this.crearArmas();
 	}
 
 	public void crearArmas() {
