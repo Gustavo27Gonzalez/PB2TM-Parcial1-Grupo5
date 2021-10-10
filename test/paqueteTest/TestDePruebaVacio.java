@@ -138,5 +138,15 @@ public class TestDePruebaVacio {
 		
 		
 	}
+	
+	@Test
+	public void que2HeroesDelMismoTipoConMismoNombreYatributosSonIgualesY2HeroesDelMismoTipoYatributosPeroDistintoNombreSonDistintos() {
+		Heroe mago1 = new Heroe ("Gandalf", 1);
+		Heroe mago2 = new Heroe ("Gandalf", 1);
+		assertEquals(mago1,mago2);
+		Heroe mago3 = new Heroe ("Harry", 1);
+		Heroe mago4 = new Heroe ("Constantine",1);
+		assertNotEquals(mago3,mago4);
+	}
 
 }
