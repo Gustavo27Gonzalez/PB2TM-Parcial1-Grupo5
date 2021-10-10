@@ -8,20 +8,28 @@ public class Arma {
 	
 	public Arma(String nombre, Integer sumaAtaque, Integer sumaDefensa) {
 		this.nombre = nombre;
-		this.sumaAtaque = sumaAtaque;
-		this.sumaDefensa = sumaDefensa;
-	}
-
-	public String getNombre() {
-		return nombre;
+		this.sumaAtaque=sumaAtaque;
+		this.sumaDefensa=sumaDefensa;
 	}
 
 	public Integer getSumaAtaque() {
 		return sumaAtaque;
 	}
 
+	public void setSumaAtaque(Integer sumaAtaque) {
+		this.sumaAtaque = sumaAtaque;
+	}
+
 	public Integer getSumaDefensa() {
 		return sumaDefensa;
+	}
+
+	public void setSumaDefensa(Integer sumaDefensa) {
+		this.sumaDefensa = sumaDefensa;
+	}
+
+	public String getNombre() {
+		return nombre;
 	}
 
 	@Override
