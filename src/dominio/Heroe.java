@@ -35,8 +35,7 @@ public class Heroe extends Personaje {
 	}
 	
 	public String verInventario() {
-		String aux = " ";
-		String nombre = " ";
+		String aux = "";
 		for(int i = 0; i<inventario.length; i++) {
 		if(inventario[i] != null) {
 			aux += "\n\t-> " + inventario[i].getNombre()+"\n";
