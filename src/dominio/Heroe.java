@@ -184,12 +184,11 @@ public class Heroe extends Personaje {
 			danioRealizado = ( this.getPuntosDeAtaque() + sumaDeDanioDeArmasEnInventario() ) - objetivo.getPuntosDeDefensa(); 
 			this.contadorDeAtaques++;
 		}
-		if(danioRealizado > 0) {
+		
+		if(danioRealizado > 0 && (objetivo.getPuntosDeVida()-danioRealizado)>=0) {
 			objetivo.setPuntosDeVida(objetivo.getPuntosDeVida() - danioRealizado);
-		}else {
-			if(danioRealizado < 0) {
-				this.setPuntosDeVida(getPuntosDeVida() - ( objetivo.getPuntosDeDefensa() - danioRealizado ));
-			}
+		}else if (danioRealizado > 0 && (objetivo.getPuntosDeVida()-danioRealizado)<0) {
+			objetivo.setPuntosDeVida(0);
 		}
 	}
 
