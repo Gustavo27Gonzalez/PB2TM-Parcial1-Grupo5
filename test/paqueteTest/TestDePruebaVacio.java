@@ -95,4 +95,9 @@ public class TestDePruebaVacio {
 		assertNotEquals(caballero1, caballero2);
 	}
 	
+	@Test
+	public void testSinHacerAun() {
+		
+	}
+	
 }
