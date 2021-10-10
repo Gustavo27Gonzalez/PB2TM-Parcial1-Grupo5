@@ -9,8 +9,7 @@ public class Juego {
 	private Enemigo[] enemigos;
 	private Jefe[] jefes;
 
-	public Juego(/* String nombreHeroe, int numeroClase */) {
-//		this.heroePrincipal = new Heroe(nombreHeroe, numeroClase);
+	public Juego() {
 		this.armasADropear = new Arma[10];
 		this.nombresDeArma = new String[] { "Espada", "Pistola", "Daga", "Escudo", "Arco" };
 		this.valoresDeArma = new Integer[] { 10, 20, 30, 40, 50 };

@@ -14,49 +14,48 @@ public class Heroe extends Personaje {
 
 		eleccionDeClase(eleccionClase);
 	}
-	public void agregarArma (Arma arma) {
+
+	public void agregarArma(Arma arma) {
 		for (int i = 0; i < inventario.length; i++) {
-			if(inventario[i]== null) {
+			if (inventario[i] == null) {
 				inventario[i] = arma;
 				break;
 			}
 			i++;
 		}
-		
+
 	}
-	
-	
-	public Integer obtenerDanoDeArmas () {
-		Integer dano=0;
-		for (int i = 0; i < inventario.length; i++) {	
-			if(inventario[i]!=null) {
+
+	public Integer obtenerDanoDeArmas() {
+		Integer dano = 0;
+		for (int i = 0; i < inventario.length; i++) {
+			if (inventario[i] != null) {
 				dano += inventario[i].getSumaAtaque();
-		}
+			}
 		}
 		return dano;
 	}
-	
+
 	public String verInventario() {
-		
+
 		String aux = " ";
 		String nombres = " ";
-		for(int i = 0; i<inventario.length; i++) {
-		if(inventario[i] != null) {
-			
-			aux += inventario[i].getNombre()+"\n";
+		for (int i = 0; i < inventario.length; i++) {
+			if (inventario[i] != null) {
+
+				aux += inventario[i].getNombre() + "\n";
+			}
 		}
-	}
 		return aux;
-}
-	
+	}
+
 	public void eleccionDeClase(Integer opcion) {
-		
-		
-		this.contadorDeAtaques=0;
+
+		this.contadorDeAtaques = 0;
 		switch (opcion) {
 		case 1: { // MAGO
-			//CAMBIE EL VALOR DEL ATAQUE PARA COMPROBAR EL FUNCIONAMIENTO DEL LA BATALLA
-			this.setPuntosDeAtaque(100);
+			// CAMBIE EL VALOR DEL ATAQUE PARA COMPROBAR EL FUNCIONAMIENTO DEL LA BATALLA
+			this.setPuntosDeAtaque(11);
 			this.setPuntosDeVida(50);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(4);
 			this.setPuntosDeDefensa(20);
@@ -66,8 +65,8 @@ public class Heroe extends Personaje {
 			this.agregarArma(vacia);
 			break;
 		}
-		
-		case 2:{  // PALADIN
+
+		case 2: { // PALADIN
 			this.setPuntosDeAtaque(15);
 			this.setPuntosDeVida(60);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(6);
@@ -78,8 +77,8 @@ public class Heroe extends Personaje {
 			this.agregarArma(vacia);
 			break;
 		}
-		
-		case 3:{ // ASESINO
+
+		case 3: { // ASESINO
 			this.setPuntosDeAtaque(25);
 			this.setPuntosDeVida(40);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(5);
@@ -90,8 +89,8 @@ public class Heroe extends Personaje {
 			this.agregarArma(vacia);
 			break;
 		}
-		
-		case 4:{  // CABALLERO
+
+		case 4: { // CABALLERO
 			this.setPuntosDeAtaque(20);
 			this.setPuntosDeVida(50);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(3);
@@ -102,7 +101,7 @@ public class Heroe extends Personaje {
 			this.agregarArma(vacia);
 			break;
 		}
-		
+
 		default:
 //			this.setPuntosDeAtaque(20);
 //			this.setPuntosDeVida(50);
@@ -111,9 +110,8 @@ public class Heroe extends Personaje {
 //			this.BONUSATAQUECRITICO = 4;
 			break;
 
-		
+		}
 	}
-}
 
 	public String getNombre() {
 		return nombre;
@@ -144,37 +142,37 @@ public class Heroe extends Personaje {
 	}
 
 	public void setInventario(Arma inventario) {
-		if(!elInventarioEstaLLeno()) {
-			for( int i = 0; i < this.inventario.length; i++) {
-				if(this.inventario[i]==null) {
-					this.inventario[i]= inventario;
+		if (!elInventarioEstaLLeno()) {
+			for (int i = 0; i < this.inventario.length; i++) {
+				if (this.inventario[i] == null) {
+					this.inventario[i] = inventario;
 					i = 10;
 				}
 			}
 		}
 	}
-	
+
 	public boolean elInventarioEstaLLeno() {
 		boolean estaLLeno = false;
 		int contadorObjetosInventario = 0;
 		int i;
-		for( i=0 ; i < this.inventario.length; i++) {
-			if(this.inventario[i]!=null) {
+		for (i = 0; i < this.inventario.length; i++) {
+			if (this.inventario[i] != null) {
 				contadorObjetosInventario++;
 			}
 		}
-		if(contadorObjetosInventario == this.inventario.length) {
+		if (contadorObjetosInventario == this.inventario.length) {
 			estaLLeno = true;
-		}else {
+		} else {
 			estaLLeno = false;
 		}
 		return estaLLeno;
 	}
-	
+
 	private Integer sumaDeDanoDeArmasEnInventario() {
-		Integer suma=0;
+		Integer suma = 0;
 		for (int i = 0; i < this.inventario.length; i++) {
-			if(this.inventario[i]!=null) {
+			if (this.inventario[i] != null) {
 				suma += this.inventario[i].getSumaAtaque();
 			}
 		}
@@ -184,22 +182,23 @@ public class Heroe extends Personaje {
 	@Override
 	public void atacar(Personaje objetivo) {
 		Integer danoRealizado = 0;
-		if ( ( ++this.contadorDeAtaques ) == this.getCadaTantosAtaquesNormalesLanzaUnAtaqueCritico() ) {
-			danoRealizado = ( ( this.BONUSATAQUECRITICO * this.getPuntosDeAtaque() ) + sumaDeDanoDeArmasEnInventario() ) - objetivo.getPuntosDeDefensa(); 
+		if ((++this.contadorDeAtaques) == this.getCadaTantosAtaquesNormalesLanzaUnAtaqueCritico()) {
+			danoRealizado = ((this.BONUSATAQUECRITICO * this.getPuntosDeAtaque()) + sumaDeDanoDeArmasEnInventario())
+					- objetivo.getPuntosDeDefensa();
 			this.contadorDeAtaques = 0;
-		}else {
-			danoRealizado = ( this.getPuntosDeAtaque() + sumaDeDanoDeArmasEnInventario() ) - objetivo.getPuntosDeDefensa(); 
+		} else {
+			danoRealizado = (this.getPuntosDeAtaque() + sumaDeDanoDeArmasEnInventario())
+					- objetivo.getPuntosDeDefensa();
 			this.contadorDeAtaques++;
 		}
-		if(danoRealizado > 0) {
+		if (danoRealizado > 0) {
 			objetivo.setPuntosDeVida(objetivo.getPuntosDeVida() - danoRealizado);
-		}else {
-			if(danoRealizado < 0) {
-				this.setPuntosDeVida(getPuntosDeVida() - ( objetivo.getPuntosDeDefensa() - danoRealizado ));
+		} else {
+			if (danoRealizado < 0) {
+				this.setPuntosDeVida(getPuntosDeVida() - (objetivo.getPuntosDeDefensa() - danoRealizado));
 			}
 		}
-		
+
 	}
 
-	
 }
