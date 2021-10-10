@@ -39,7 +39,7 @@ public class Heroe extends Personaje {
 		String nombre = " ";
 		for(int i = 0; i<inventario.length; i++) {
 		if(inventario[i] != null) {
-			aux += inventario[i].getNombre()+"\n";
+			aux += "\n\t-> " + inventario[i].getNombre()+"\n";
 		}
 	}
 		return aux;
@@ -51,10 +51,10 @@ public class Heroe extends Personaje {
 		switch (eleccionClase) {
 		case 1: { // MAGO
 
-			this.setPuntosDeAtaque(200);
-			this.setPuntosDeVida(500);
+			this.setPuntosDeAtaque(70);
+			this.setPuntosDeVida(30);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(4);
-			this.setPuntosDeDefensa(20);
+			this.setPuntosDeDefensa(40);
 			this.BONUSATAQUECRITICO = 5;
       
 			clase = ClaseDeHeroe.MAGO;
@@ -63,10 +63,10 @@ public class Heroe extends Personaje {
 			break;
 		}
 		case 2:{  // PALADIN
-			this.setPuntosDeAtaque(15);
-			this.setPuntosDeVida(60);
+			this.setPuntosDeAtaque(50);
+			this.setPuntosDeVida(80);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(6);
-			this.setPuntosDeDefensa(25);
+			this.setPuntosDeDefensa(60);
 			this.BONUSATAQUECRITICO = 3;
       
 			clase = ClaseDeHeroe.PALADIN;
@@ -76,10 +76,10 @@ public class Heroe extends Personaje {
 		}
 		
 		case 3:{ // ASESINO
-			this.setPuntosDeAtaque(25);
+			this.setPuntosDeAtaque(55);
 			this.setPuntosDeVida(40);
-			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(5);
-			this.setPuntosDeDefensa(5);
+			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(2);
+			this.setPuntosDeDefensa(25);
 			this.BONUSATAQUECRITICO = 2;
       
 			clase = ClaseDeHeroe.ASESINO;
@@ -88,10 +88,10 @@ public class Heroe extends Personaje {
 			break;
 		}
 		case 4:{  // CABALLERO
-			this.setPuntosDeAtaque(20);
-			this.setPuntosDeVida(50);
+			this.setPuntosDeAtaque(35);
+			this.setPuntosDeVida(60);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(3);
-			this.setPuntosDeDefensa(20);
+			this.setPuntosDeDefensa(40);
 			this.BONUSATAQUECRITICO = 4;
       
 			clase = ClaseDeHeroe.CABALLERO;
@@ -195,11 +195,11 @@ public class Heroe extends Personaje {
 	public String getStatusHeroe() {
 
         String aux = "";
-        aux += ("\t\tNombre: " + this.getNombre()  + "\n"
-                + "Clase: " + this.getClase() + "\n"
-                + "Puntos de vida: " + this.getPuntosDeVida() + "\n"
-                + "Puntos de ataque: " + this.getPuntosDeAtaque() + "\n"
-                + "Puntos de defensa: " + this.getPuntosDeDefensa() + "\n");
+        aux += (  "\tNombre: " + this.getNombre()  + "\n"
+                + "\tClase: " + this.getClase() + "\n"
+                + "\tPuntos de vida: " + this.getPuntosDeVida() + "\n"
+                + "\tPuntos de ataque: " + this.getPuntosDeAtaque() + "\n"
+                + "\tPuntos de defensa: " + this.getPuntosDeDefensa() + "\n");
 
         return aux;
     }

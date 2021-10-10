@@ -20,7 +20,7 @@ package interfaz;
 
 			} while (!exitFlag);
 
-			System.out.println("\tSaliendo del juego...");
+			System.out.println("\n\t...Saliendo del juego...");
 		}
 			
 			
@@ -40,7 +40,7 @@ package interfaz;
 			nombre = teclado.nextLine();
 
 			do {
-				System.out.println("\t******Seleccione la clase******\n" 
+				System.out.println("\n\t******Seleccione la clase******\n" 
 						+ "\t1 -> Mago\n" 
 						+ "\t2 -> Paladin\n" 
 						+ "\t3 -> Asesino\n"
@@ -54,12 +54,12 @@ package interfaz;
 
 					break;
 				}
-				System.out.println("Error al crear la clase, Seleccione un numero de entre las opciones");
+				System.out.println("\tError al crear la clase, Seleccione un numero de entre las opciones\n");
 			} while (true);
 
 			Juego partidaNueva = new Juego(nombre, seleccionClase);
 
-			System.out.println("Se ha creado el heroe: " + partidaNueva.getHeroePrincipal().getNombre() + ", de clase: "
+			System.out.println("\t-> Se ha creado el heroe: " + partidaNueva.getHeroePrincipal().getNombre() + ", de clase: "
 					+ partidaNueva.getHeroePrincipal().getClase() + "\n");
 			
 			return partidaNueva;
@@ -121,7 +121,6 @@ package interfaz;
 				if (resultadoDePeleaContraElEnemigoComun(partida, partida.getHeroePrincipal(),
 						partida.enemigoAPelear())) {
 					partida.setContadorDeBoss(partida.getContadorDeBoss() + 1);
-					System.out.println("Contador es:" + partida.getContadorDeBoss());
 					
 				} else {
 					partida.setContadorDeBoss(0);
@@ -144,7 +143,7 @@ package interfaz;
 		private static Boolean resultadoDePeleaContraElEnemigoComun(Juego partida, Heroe jugador, Enemigo enemigo) {
 
 			if (partida.pelea(partida.getHeroePrincipal(), partida.enemigoAPelear())) {
-				System.out.println("\t\tHas vencido al mounstro\n");
+				System.out.println("\t-> Has vencido al mounstro <-\n");
 				return true;
 			} else {
 				System.out.println("\tCaiste en batalla..." + " GAME OVER!!");
@@ -157,7 +156,7 @@ package interfaz;
 
 			System.out.println("\t...BOSS INCOMING...\n");
 			if (partida.pelea(partida.getHeroePrincipal(), partida.jefeAPelear())) {
-				System.out.println("\tHas vencido al JEFE\n");
+				System.out.println("\t-> Has vencido al JEFE <-\n");
 				return true;
 			} else {
 				System.out.println("\tCaiste en batalla..." + "GAME OVER!!");
