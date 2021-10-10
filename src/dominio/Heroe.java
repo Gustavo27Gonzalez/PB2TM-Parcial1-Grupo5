@@ -51,8 +51,8 @@ public class Heroe extends Personaje {
 		switch (eleccionClase) {
 		case 1: { // MAGO
 
-			this.setPuntosDeAtaque(20);
-			this.setPuntosDeVida(50);
+			this.setPuntosDeAtaque(200);
+			this.setPuntosDeVida(500);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(4);
 			this.setPuntosDeDefensa(20);
 			this.BONUSATAQUECRITICO = 5;

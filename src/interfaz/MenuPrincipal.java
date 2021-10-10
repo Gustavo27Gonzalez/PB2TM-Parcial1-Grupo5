@@ -6,6 +6,7 @@ import dominio.Enemigo;
 import dominio.Heroe;
 import dominio.Jefe;
 import dominio.Juego;
+import dominio.Personaje;
 
 public class MenuPrincipal {
 
@@ -69,22 +70,33 @@ public class MenuPrincipal {
         Scanner teclado = new Scanner(System.in);
         Integer opcion = Integer.parseInt(teclado.nextLine());
         Boolean inExitFlag = false;
-        Integer contadorParaElJefe = 5;
 
         switch (opcion) {
         case 1: {
-            do {
-                if (resultadoDePeleaContraElEnemigoComun(partida, partida.getHeroePrincipal(),
-                        partida.enemigoAPelear())) {
-                    contadorParaElJefe--;
-                    System.out.println(contadorParaElJefe);
-                    break;
-                }
-                contadorParaElJefe = 5;
+        	if(partida.getContadorDeBoss() != 5 ) {
+        		partida.crearEnemigo();
+        	if(resultadoDePeleaContraElEnemigoComun(partida,partida.getHeroePrincipal(),partida.enemigoAPelear())) {
+        		partida.setContadorDeBoss(partida.getContadorDeBoss()+1);;
+        		System.out.println("Contador es " + partida.getContadorDeBoss());
+        		break;
+        	}else {
+        		partida.setContadorDeBoss(0);
                 inExitFlag = true;
                 break;
-            } while (contadorParaElJefe > 0);
-            break;
+        	}
+        	}else {
+        		partida.crearJefe();
+        		if(resultadoDePeleaContraElEnemigoComun(partida,partida.getHeroePrincipal(),partida.jefeAPelear())) {
+        			partida.setContadorDeBoss(0);
+            		System.out.println("Le ganaste al jefe");
+            		break;
+        		
+        	} else {
+        		partida.setContadorDeBoss(0);
+                inExitFlag = true;
+                break;
+        	}
+        }
         }
         case 2:{
             System.out.println(partida.getHeroePrincipal().verInventario());
@@ -105,7 +117,7 @@ public class MenuPrincipal {
         return inExitFlag;
     }
 	
-	private static Boolean resultadoDePeleaContraElEnemigoComun(Juego partida, Heroe jugador, Enemigo enemigo) {
+	private static Boolean resultadoDePeleaContraElEnemigoComun(Juego partida, Heroe jugador, Personaje enemigo) {
 
         if (partida.pelea(partida.getHeroePrincipal(), partida.enemigoAPelear())) {
             System.out.println("\t\tHas vencido al mounstro\n");

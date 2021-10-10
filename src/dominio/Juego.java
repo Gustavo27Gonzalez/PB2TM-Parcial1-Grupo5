@@ -10,8 +10,18 @@ public class Juego {
 	private Integer[] valoresDeArma;
 	private Enemigo[] enemigos;
 	private Jefe[] jefes;
+	private Integer contadorDeBoss;
+
+	public Integer getContadorDeBoss() {
+		return contadorDeBoss;
+	}
+
+	public void setContadorDeBoss(Integer contadorDeBoss) {
+		this.contadorDeBoss = contadorDeBoss;
+	}
 
 	public Juego(String nombre, int clase) {
+		this.contadorDeBoss=0;
         this.heroePrincipal=new Heroe(nombre, clase);
 		
 		this.armasADropear = new Arma[10];
@@ -30,8 +40,9 @@ public class Juego {
 				armasADropear[i] = new Arma(nombresDeArma[this.seleccionValorArma()],
 						valoresDeArma[this.seleccionValorArma()], this.valoresDeArma[this.seleccionValorArma()]);
 			}
-		}
+		}	
 	}
+	
 
 	public int seleccionValorArma() {
 		Double random = Math.random();
@@ -110,5 +121,17 @@ public class Juego {
 		}
 		return verificar;
 	}
+	public Jefe jefeAPelear() {
+
+        Integer jefesNoNull = 0;
+        Jefe jefeARetornar = null;
+        for (int i = 0; i <jefes.length; i++) {
+            if(jefes[i]!= null) {
+                jefesNoNull++;
+            }
+        }
+        jefeARetornar = jefes[jefesNoNull - 1];
+        return jefeARetornar;
+    }
 	
 }
