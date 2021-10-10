@@ -1,133 +1,170 @@
 package interfaz;
 
-import java.util.Scanner;
+	import java.util.Scanner;
+	import dominio.Enemigo;
+	import dominio.Heroe;
+	import dominio.Jefe;
+	import dominio.Juego;
 
-import dominio.Enemigo;
-import dominio.Heroe;
-import dominio.Jefe;
-import dominio.Juego;
-import dominio.Personaje;
+	public class MenuPrincipal {
 
-public class MenuPrincipal {
+		public static void main(String[] args) {
 
-	public static void main(String[] args) {
- 
-		Scanner teclado = new Scanner(System.in);
-        String nombre;
-        Integer seleccionClase;
+			Boolean exitFlag = false;
+			
+			
+			Juego partidaNueva = menuPrincipal();
+			do {
+				opcionesDelMenu();
+				exitFlag = seleccionesMenu(partidaNueva);
 
-        System.out.println("\t\tMenu de inicio");
-        System.out.println("\t\tIngrese su nombre");
+			} while (!exitFlag);
 
-        nombre = teclado.nextLine();
-        
-        do {
-            System.out.println("\t Seleccione la clase\n" + "1 -> Mago\n" + "2 -> Paladin\n" + "3 -> Asesino\n"
-                    + "4 -> Caballero\n");
-            seleccionClase = Integer.parseInt(teclado.nextLine());
-            if (seleccionClase > 0 && seleccionClase <= 4) {
-
-                
-                break;
-            }
-            System.out.println("Error al crear la clase, Seleccione un numero de entre las opciones");
-        } while (true);
-        
-        Juego partidaNueva = new Juego(nombre, seleccionClase);
-        
-        System.out.println("Se ha creado el heroe: " + partidaNueva.getHeroePrincipal().getNombre() + ", de clase: "
-                + partidaNueva.getHeroePrincipal().getClase());
-        System.out.println("***");
-        
-        Boolean exitFlag = false;
-        
-        Jefe jefeFinal;
-        Integer contadorParaJefe = 0;
-
-       
-        do {
-            opcionesDelMenu();
-            exitFlag = seleccionesMenu(partidaNueva);
-
-        } while (!exitFlag);
-
-        System.out.println("\t\tSaliendo del juego...");
-    }
-	
+			System.out.println("\tSaliendo del juego...");
+		}
+			
+			
 		
-	private static void opcionesDelMenu() {
+			
+		
+		private static Juego menuPrincipal() {
+			
+			Scanner teclado = new Scanner(System.in);
+			String nombre;
+			Integer seleccionClase;
+			
+			System.out.println("\t******Menu de inicio******\n");
+			System.out.println("\t-> Ingrese su nombre <-\n");
 
-        System.out.println("\t\tMenu principal\n");
+			System.out.print("\t-> ");
+			nombre = teclado.nextLine();
 
-        System.out.println("1 - Combate a muerte");
-        System.out.println("2 - Ver inventario de armas");
-        System.out.println("3 - Ver status del heroe");
-        System.out.println("4 - Salir");
+			do {
+				System.out.println("\t******Seleccione la clase******\n" 
+						+ "\t1 -> Mago\n" 
+						+ "\t2 -> Paladin\n" 
+						+ "\t3 -> Asesino\n"
+						+ "\t4 -> Caballero\n"
+						+ "\t*******************************\n");
+			
+				
+				System.out.print("\t-> ");
+				seleccionClase = Integer.parseInt(teclado.nextLine());
+				if (seleccionClase > 0 && seleccionClase <= 4) {
 
-    }
-	
-	private static Boolean seleccionesMenu(Juego partida) {
-        Scanner teclado = new Scanner(System.in);
-        Integer opcion = Integer.parseInt(teclado.nextLine());
-        Boolean inExitFlag = false;
+					break;
+				}
+				System.out.println("Error al crear la clase, Seleccione un numero de entre las opciones");
+			} while (true);
 
-        switch (opcion) {
-        case 1: {
-        	if(partida.getContadorDeBoss() != 5 ) {
-        		partida.crearEnemigo();
-        	if(resultadoDePeleaContraElEnemigoComun(partida,partida.getHeroePrincipal(),partida.enemigoAPelear())) {
-        		partida.setContadorDeBoss(partida.getContadorDeBoss()+1);;
-        		System.out.println("Contador es " + partida.getContadorDeBoss());
-        		break;
-        	}else {
-        		partida.setContadorDeBoss(0);
-                inExitFlag = true;
-                break;
-        	}
-        	}else {
-        		partida.crearJefe();
-        		if(resultadoDePeleaContraElEnemigoComun(partida,partida.getHeroePrincipal(),partida.jefeAPelear())) {
-        			partida.setContadorDeBoss(0);
-            		System.out.println("Le ganaste al jefe");
-            		break;
-        		
-        	} else {
-        		partida.setContadorDeBoss(0);
-                inExitFlag = true;
-                break;
-        	}
-        }
-        }
-        case 2:{
-            System.out.println(partida.getHeroePrincipal().verInventario());
-            break;
-        }
-        case 3:{
-            System.out.println(partida.getHeroePrincipal().getStatusHeroe());
-            break;
-        }
-        case 4:
-            inExitFlag = true;
-            break;
-        default:
-            break;
+			Juego partidaNueva = new Juego(nombre, seleccionClase);
 
-        }
+			System.out.println("Se ha creado el heroe: " + partidaNueva.getHeroePrincipal().getNombre() + ", de clase: "
+					+ partidaNueva.getHeroePrincipal().getClase() + "\n");
+			
+			return partidaNueva;
 
-        return inExitFlag;
-    }
-	
-	private static Boolean resultadoDePeleaContraElEnemigoComun(Juego partida, Heroe jugador, Personaje enemigo) {
+		}
 
-        if (partida.pelea(partida.getHeroePrincipal(), partida.enemigoAPelear())) {
-            System.out.println("\t\tHas vencido al mounstro\n");
-            return true;
-        } else {
-            System.out.println("\tCaiste en batalla...\n" + "\tGAME OVER!!");
-            return false;
+			
 
-        }
-    }
-	
-	
-}
+		private static void opcionesDelMenu() {
+
+			System.out.println("\t********Menu principal********\n");
+
+			System.out.println("\t1 - Combate a muerte");
+			System.out.println("\t2 - Ver inventario de armas");
+			System.out.println("\t3 - Ver status del heroe");
+			System.out.println("\t4 - Salir\n");
+			System.out.println("\t*****************************\n");
+
+		}
+
+		private static Boolean seleccionesMenu(Juego partida) {
+			Scanner teclado = new Scanner(System.in);
+			System.out.print("\t-> ");
+			Integer opcion = Integer.parseInt(teclado.nextLine());
+			Boolean inExitFlag = false;
+
+			switch (opcion) {
+			case 1: {
+				if(case1(partida)) {
+					inExitFlag = true;
+				}
+				break;
+			}
+
+			case 2: {
+				System.out.println(partida.getHeroePrincipal().verInventario());
+				break;
+			}
+			case 3: {
+				System.out.println(partida.getHeroePrincipal().getStatusHeroe());
+				break;
+			}
+			case 4:
+				inExitFlag = true;
+				break;
+			default:
+				break;
+
+			}
+
+			return inExitFlag;
+		}
+
+		private static Boolean case1(Juego partida) {
+			Boolean inExitFlag = false;
+			
+			if (partida.getContadorDeBoss() < 5) {
+				partida.crearEnemigo();
+				if (resultadoDePeleaContraElEnemigoComun(partida, partida.getHeroePrincipal(),
+						partida.enemigoAPelear())) {
+					partida.setContadorDeBoss(partida.getContadorDeBoss() + 1);
+					System.out.println("Contador es:" + partida.getContadorDeBoss());
+					
+				} else {
+					partida.setContadorDeBoss(0);
+					inExitFlag = true;
+
+				}
+			} else {
+				partida.crearJefe();
+				if (resultadoDePeleaContraElJefe(partida, partida.getHeroePrincipal(), partida.jefeAPelear())) {
+					partida.setContadorDeBoss(0);
+				
+				} else {
+					inExitFlag = true;
+				}
+			}
+
+			return inExitFlag;
+		
+		}
+		private static Boolean resultadoDePeleaContraElEnemigoComun(Juego partida, Heroe jugador, Enemigo enemigo) {
+
+			if (partida.pelea(partida.getHeroePrincipal(), partida.enemigoAPelear())) {
+				System.out.println("\t\tHas vencido al mounstro\n");
+				return true;
+			} else {
+				System.out.println("\tCaiste en batalla..." + " GAME OVER!!");
+				return false;
+
+			}
+		}
+
+		private static Boolean resultadoDePeleaContraElJefe(Juego partida, Heroe jugador, Jefe enemigo) {
+
+			System.out.println("\t...BOSS INCOMING...\n");
+			if (partida.pelea(partida.getHeroePrincipal(), partida.jefeAPelear())) {
+				System.out.println("\tHas vencido al JEFE\n");
+				return true;
+			} else {
+				System.out.println("\tCaiste en batalla..." + "GAME OVER!!");
+				return false;
+
+			}
+		}
+		
+		
+	}
