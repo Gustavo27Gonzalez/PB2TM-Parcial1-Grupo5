@@ -31,7 +31,7 @@ public class Juego {
 		for (int i = 0; i < armasADropear.length; i++) {
 			if (this.armasADropear[i] == null) {
 				armasADropear[i] = new Arma(nombresDeArma[this.seleccionValorArma()],
-						valoresDeArma[this.seleccionValorArma()], this.valoresDeArma[this.seleccionValorArma()]);
+						valoresDeArma[this.seleccionValorArma()]);
 			}
 		}
 	}

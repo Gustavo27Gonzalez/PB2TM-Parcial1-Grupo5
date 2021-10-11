@@ -4,12 +4,10 @@ public class Arma {
 	
 	private String nombre;
 	private Integer sumaAtaque;
-	private Integer sumaDefensa;
 	
-	public Arma(String nombre, Integer sumaAtaque, Integer sumaDefensa) {
+	public Arma(String nombre, Integer sumaAtaque) {
 		this.nombre = nombre;
 		this.sumaAtaque = sumaAtaque;
-		this.sumaDefensa = sumaDefensa;
 	}
 	
 	public Arma(Integer eleccionPrincipiante) {
@@ -31,15 +29,6 @@ public class Arma {
 		
 		this.sumaAtaque = a;
 	}
-
-	public Integer getSumaDefensa() {
-		return sumaDefensa;
-	}
-
-
-	public void setSumaDefensa(Integer sumaDefensa) {
-		this.sumaDefensa = sumaDefensa;
-	}
 	
 	public void setNombre(String nombre) {
 		
@@ -52,31 +41,26 @@ public class Arma {
 		case 1:
 			this.setNombre("Vara de mago");
 			this.setSumaAtaque(9);
-			this.setSumaDefensa(1);
 			break;
 		
 		case 2:
 			this.setNombre("Lucero de paladin");
 			this.setSumaAtaque(3);
-			this.setSumaDefensa(7);
 			break;
 		
 		case 3:
 			this.setNombre("Dagas de asesino");
 			this.setSumaAtaque(7);
-			this.setSumaDefensa(3);
 			break;
 		
 		case 4:
 			this.setNombre("Espada y escudo de caballero");
 			this.setSumaAtaque(5);
-			this.setSumaDefensa(5);
 			break;
 		
 		default:
 			this.setNombre("Manos desnudas");
 			this.setSumaAtaque(1);
-			this.setSumaDefensa(1);
 			break;
 		
 	}

@@ -61,7 +61,7 @@ public class Enemigo extends Personaje {
 	public void atacar(Personaje objetivo) {
 		Integer danioRealizado = 0;
 		if ( ( ++this.contadorDeAtaques ) == this.getCadaTantosAtaquesNormalesLanzaUnAtaqueCritico() ) {
-			danioRealizado = ( this.BONUSATAQUECRITICO * this.getPuntosDeAtaque() ) - objetivo.getPuntosDeDefensa(); 
+			danioRealizado = ( this.BONUSATAQUECRITICO * this.getPuntosDeAtaque() ) -  objetivo.getPuntosDeDefensa(); 
 			this.contadorDeAtaques = 0;
 		}else {
 			danioRealizado = this.getPuntosDeAtaque() - objetivo.getPuntosDeDefensa(); 
@@ -74,6 +74,8 @@ public class Enemigo extends Personaje {
 		}
 		
 	}
+	
+	
 
 	
 }

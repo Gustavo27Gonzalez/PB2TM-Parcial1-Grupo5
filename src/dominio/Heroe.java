@@ -76,7 +76,7 @@ public class Heroe extends Personaje {
 		
 		case 3:{ // ASESINO
 			this.setPuntosDeAtaque(55);
-			this.setPuntosDeVida(30);
+			this.setPuntosDeVida(40);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(2);
 			this.setPuntosDeDefensa(30);
 			this.BONUSATAQUECRITICO = 2;
@@ -202,5 +202,13 @@ public class Heroe extends Personaje {
 
         return aux;
     }
+	
+	@Override
+	public String toString() {
+		return "\tHeroe\n \tNombre=" + nombre + "\n \tClase=" + clase + "\n \tPuntos de vida=" + getPuntosDeVida()
+				+ "\n \tPuntos de ataque=" + getPuntosDeAtaque() + "\n \tPuntos de defensa=" + getPuntosDeDefensa() + "\n";
+	}
+	
+	
 	
 }
