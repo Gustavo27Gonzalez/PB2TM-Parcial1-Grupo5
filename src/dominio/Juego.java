@@ -55,14 +55,18 @@ public class Juego {
 
 	public Boolean pelea(Heroe heroePrincipal, Personaje enemigo) {
 		Boolean victoria = false;
-		while (heroePrincipal.getPuntosDeVida() > 0) {
+		boolean continuarPeleando = true;
+		while (continuarPeleando) {
 			heroePrincipal.atacar(enemigo);
 			if (enemigo.getPuntosDeVida() <= 0) {
 				victoria = true;
-				break;
+				continuarPeleando = false;
+			}else {
+				enemigo.atacar(heroePrincipal);
+				if(heroePrincipal.getPuntosDeVida() <= 0) {
+					continuarPeleando = false;
+				}
 			}
-			enemigo.atacar(heroePrincipal);
-
 		}
 		return victoria;
 	}

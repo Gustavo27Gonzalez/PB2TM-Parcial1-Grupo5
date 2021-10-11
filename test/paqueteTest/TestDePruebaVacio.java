@@ -4,11 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import dominio.ClaseDeHeroe;
-import dominio.Enemigo;
-import dominio.Heroe;
-import dominio.Jefe;
-import dominio.Juego;
+import dominio.*;
 
 public class TestDePruebaVacio {
 
@@ -55,8 +51,6 @@ public class TestDePruebaVacio {
 		assertEquals(valorEsperado, enemigo.getPuntosDeDefensa());
 	}
 	
-	
-	// ESTE TEST FUE PROBADO SIN LA PROBABILIDAD DE CRITICO APLICADA
 	@Test
 	public void queSePuedaAtacar() {
 		Enemigo enemigo=new Enemigo(30, 0, 20);
@@ -72,7 +66,6 @@ public class TestDePruebaVacio {
 		assertEquals(vidaEnemigoEsperada, enemigo.getPuntosDeVida());
 	}
 	
-	// ESTE TEST FUE PROBADO SIN LA PROBABILIDAD DE CRITICO APLICADA
 	@Test
 	public void queSiLaDefensaEsMayorAlAtaqueAnuleElDaño() {
 		Enemigo enemigo=new Enemigo(10, 0, 20);
@@ -85,7 +78,6 @@ public class TestDePruebaVacio {
 		assertEquals(vidaMagoEsperada, mago.getPuntosDeVida());
 	}
 	
-	// ESTE TEST FUE PROBADO SIN LA PROBABILIDAD DE CRITICO APLICADA
 	@Test
 	public void queSePuedaPelearConUnEnemigoYElHeroeGane() {
 		Juego juego=new Juego("Mago", 1);
@@ -94,7 +86,6 @@ public class TestDePruebaVacio {
 		assertTrue(juego.pelea(juego.getHeroePrincipal(), enemigo));
 	}
 	
-	// ESTE TEST FUE PROBADO SIN LA PROBABILIDAD DE CRITICO APLICADA
 	@Test
 	public void queSePuedaPelearConUnEnemigoYElHeroePierda() {
 		Juego juego=new Juego("Mago", 2);
@@ -103,7 +94,6 @@ public class TestDePruebaVacio {
 		assertFalse(juego.pelea(juego.getHeroePrincipal(), enemigo));
 	}
 	
-	// ESTE TEST FUE PROBADO SIN LA PROBABILIDAD DE CRITICO APLICADA
 	@Test
 	public void queSePuedaPelearConUnJefeYElHeroeGane() {
 		Juego juego=new Juego("Mago", 1);
@@ -112,10 +102,9 @@ public class TestDePruebaVacio {
 		assertTrue(juego.pelea(juego.getHeroePrincipal(), enemigo));
 	}
 	
-	// ESTE TEST FUE PROBADO SIN LA PROBABILIDAD DE CRITICO APLICADA
 	@Test
 	public void queSePuedaPelearConUnJefeYElHeroePierda() {
-		Juego juego=new Juego("Mago", 1); // 70, 10, 30 ataque, defensa, vida
+		Juego juego=new Juego("Mago", 1); // 70, 10, 30 ataque, defensa, vida + 9 de ataque del arma predeterminada del mago
 		Jefe enemigo=new Jefe(40, 10, 100);// 40, 10, 100
 		
 		Integer vidaDelHeroeLuegoDePelearConUnEnemigoMasFuerte = 0;
@@ -161,4 +150,35 @@ public class TestDePruebaVacio {
 			
 		assertEquals(mago1.toString(), mago2.toString());
 	}
+	
+	@Test
+	public void queElHeroePeleaConUnEnemigoYRealizaElAtaqueConBonificacion() {
+		Juego juego3 = new Juego("Caballero", 4);// 35 atq, 40 def, 60 vida + 5 atq arma y cada 3 ataques lanza un ataque critico (multiplica por 4 el ataque base del asesino)
+		Enemigo enemigo3 = new Enemigo(50,5,245);
+		
+		Integer vidaEsperadaDelHeroeTrasPelear = 30;
+		Integer vidaEsperadaDelEnemigoTrasPelear = 0;
+		
+		juego3.pelea(juego3.getHeroePrincipal(), enemigo3);
+		
+		assertEquals(vidaEsperadaDelHeroeTrasPelear, juego3.getHeroePrincipal().getPuntosDeVida());
+		assertEquals(vidaEsperadaDelEnemigoTrasPelear, enemigo3.getPuntosDeVida());
+		
+	}
+	
+	@Test
+	public void que2HeroesConMismoNombreYmismoTipoSonIguales() {
+		Heroe heroe1 = new Heroe("Gandalf",1);
+		Heroe heroe2 = new Heroe("Gandalf", 1);
+		assertEquals(heroe1, heroe2);
+	}
+	
+	@Test
+	public void que2HeroesDelMismoTipoConDistintoNombreNoSonIguales() {
+		Heroe heroeA = new Heroe("Gandalf",1);
+		Heroe heroeB = new Heroe("gANDALF", 1);
+		assertNotEquals(heroeA,heroeB);
+	}
+	
+	
 }

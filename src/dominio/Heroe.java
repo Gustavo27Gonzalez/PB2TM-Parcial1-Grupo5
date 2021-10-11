@@ -55,7 +55,6 @@ public class Heroe extends Personaje {
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(4);
 			this.setPuntosDeDefensa(10);
 			this.BONUSATAQUECRITICO = 5;
-      
 			clase = ClaseDeHeroe.MAGO;
 			Arma vacia = new Arma(eleccionClase);
 			this.agregarArma(vacia);
@@ -67,7 +66,6 @@ public class Heroe extends Personaje {
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(6);
 			this.setPuntosDeDefensa(30);
 			this.BONUSATAQUECRITICO = 3;
-      
 			clase = ClaseDeHeroe.PALADIN;
 			Arma vacia = new Arma(eleccionClase);
 			this.agregarArma(vacia);
@@ -80,7 +78,6 @@ public class Heroe extends Personaje {
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(2);
 			this.setPuntosDeDefensa(30);
 			this.BONUSATAQUECRITICO = 2;
-      
 			clase = ClaseDeHeroe.ASESINO;
 			Arma vacia = new Arma(eleccionClase);
 			this.agregarArma(vacia);
@@ -92,21 +89,19 @@ public class Heroe extends Personaje {
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(3);
 			this.setPuntosDeDefensa(40);
 			this.BONUSATAQUECRITICO = 4;
-      
 			clase = ClaseDeHeroe.CABALLERO;
 			Arma vacia = new Arma(eleccionClase);
 			this.agregarArma(vacia);
 			break;
 		}	
 		default:
-			this.setPuntosDeAtaque(20);
-			this.setPuntosDeVida(50);
+			this.setPuntosDeAtaque(35);
+			this.setPuntosDeVida(60);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(3);
-			this.setPuntosDeDefensa(20);
+			this.setPuntosDeDefensa(40);
 			this.BONUSATAQUECRITICO = 4;
-        
 			clase = ClaseDeHeroe.CABALLERO;
-      Arma vacia = new Arma(eleccionClase);
+			Arma vacia = new Arma(eleccionClase);
 			this.agregarArma(vacia);
 			break;
 		}
@@ -208,6 +203,47 @@ public class Heroe extends Personaje {
 		return "\tHeroe\n \tNombre=" + nombre + "\n \tClase=" + clase + "\n \tPuntos de vida=" + getPuntosDeVida()
 				+ "\n \tPuntos de ataque=" + getPuntosDeAtaque() + "\n \tPuntos de defensa=" + getPuntosDeDefensa() + "\n";
 	}
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((BONUSATAQUECRITICO == null) ? 0 : BONUSATAQUECRITICO.hashCode());
+		result = prime * result + ((clase == null) ? 0 : clase.hashCode());
+		result = prime * result + ((contadorDeAtaques == null) ? 0 : contadorDeAtaques.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Heroe other = (Heroe) obj;
+		if (BONUSATAQUECRITICO == null) {
+			if (other.BONUSATAQUECRITICO != null)
+				return false;
+		} else if (!BONUSATAQUECRITICO.equals(other.BONUSATAQUECRITICO))
+			return false;
+		if (clase != other.clase)
+			return false;
+		if (contadorDeAtaques == null) {
+			if (other.contadorDeAtaques != null)
+				return false;
+		} else if (!contadorDeAtaques.equals(other.contadorDeAtaques))
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		return true;
+	}
+	
 	
 	
 	
