@@ -11,7 +11,7 @@ public class Heroe extends Personaje {
 
 	public Heroe (String nombre, int eleccionClase) {
 		this.nombre = nombre;
-		inventario = new Arma[11];
+		inventario = new Arma[10];
 		eleccionDeClase(eleccionClase);
 
 	}
@@ -53,7 +53,7 @@ public class Heroe extends Personaje {
 			this.setPuntosDeAtaque(70);
 			this.setPuntosDeVida(30);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(4);
-			this.setPuntosDeDefensa(10);
+			this.setPuntosDeDefensa(15);
 			this.BONUSATAQUECRITICO = 5;
 			clase = ClaseDeHeroe.MAGO;
 			Arma vacia = new Arma(eleccionClase);
@@ -64,7 +64,7 @@ public class Heroe extends Personaje {
 			this.setPuntosDeAtaque(50);
 			this.setPuntosDeVida(80);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(6);
-			this.setPuntosDeDefensa(30);
+			this.setPuntosDeDefensa(10);
 			this.BONUSATAQUECRITICO = 3;
 			clase = ClaseDeHeroe.PALADIN;
 			Arma vacia = new Arma(eleccionClase);
@@ -76,7 +76,7 @@ public class Heroe extends Personaje {
 			this.setPuntosDeAtaque(55);
 			this.setPuntosDeVida(40);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(2);
-			this.setPuntosDeDefensa(30);
+			this.setPuntosDeDefensa(20);
 			this.BONUSATAQUECRITICO = 2;
 			clase = ClaseDeHeroe.ASESINO;
 			Arma vacia = new Arma(eleccionClase);
@@ -87,7 +87,7 @@ public class Heroe extends Personaje {
 			this.setPuntosDeAtaque(35);
 			this.setPuntosDeVida(60);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(3);
-			this.setPuntosDeDefensa(40);
+			this.setPuntosDeDefensa(25);
 			this.BONUSATAQUECRITICO = 4;
 			clase = ClaseDeHeroe.CABALLERO;
 			Arma vacia = new Arma(eleccionClase);
@@ -98,7 +98,7 @@ public class Heroe extends Personaje {
 			this.setPuntosDeAtaque(35);
 			this.setPuntosDeVida(60);
 			this.setCadaTantosAtaquesNormalesLanzaUnAtaqueCritico(3);
-			this.setPuntosDeDefensa(40);
+			this.setPuntosDeDefensa(30);
 			this.BONUSATAQUECRITICO = 4;
 			clase = ClaseDeHeroe.CABALLERO;
 			Arma vacia = new Arma(eleccionClase);

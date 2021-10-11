@@ -104,8 +104,8 @@ public class TestDePruebaVacio {
 	
 	@Test
 	public void queSePuedaPelearConUnJefeYElHeroePierda() {
-		Juego juego=new Juego("Mago", 1); // 70, 10, 30 ataque, defensa, vida + 9 de ataque del arma predeterminada del mago
-		Jefe enemigo=new Jefe(40, 10, 100);// 40, 10, 100
+		Juego juego=new Juego("Mago", 1); // 70, 15, 30 ataque, defensa, vida + 9 de ataque del arma predeterminada del mago
+		Jefe enemigo=new Jefe(45, 10, 100);// 45, 10, 100
 		
 		Integer vidaDelHeroeLuegoDePelearConUnEnemigoMasFuerte = 0;
 		Integer vidaDelJefeLuegoDePelearConUnHeroeMasDebil = 31;
@@ -154,9 +154,9 @@ public class TestDePruebaVacio {
 	@Test
 	public void queElHeroePeleaConUnEnemigoYRealizaElAtaqueConBonificacion() {
 		Juego juego3 = new Juego("Caballero", 4);// 35 atq, 40 def, 60 vida + 5 atq arma y cada 3 ataques lanza un ataque critico (multiplica por 4 el ataque base del asesino)
-		Enemigo enemigo3 = new Enemigo(50,5,245);
+		Enemigo enemigo3 = new Enemigo(40,5,245);
 		
-		Integer vidaEsperadaDelHeroeTrasPelear = 30;
+		Integer vidaEsperadaDelHeroeTrasPelear = 15;
 		Integer vidaEsperadaDelEnemigoTrasPelear = 0;
 		
 		juego3.pelea(juego3.getHeroePrincipal(), enemigo3);

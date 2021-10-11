@@ -6,6 +6,7 @@ public class Juego {
 	private Arma[] armasADropear;
 	private String[] nombresDeArma;
 	private Integer[] valoresDeArma;
+	private Integer[] valoresEnemigos;
 	private Enemigo[] enemigos;
 	private Jefe[] jefes;
 	private Integer contadorDeBoss;
@@ -17,9 +18,10 @@ public class Juego {
 		this.heroePrincipal = new Heroe(nombre, clase);
 
 		this.armasADropear = new Arma[10];
-		this.nombresDeArma = new String[] { "Espada", "Pistola", "Daga", "Escudo", "Arco" };
-		this.valoresDeArma = new Integer[] { 10, 20, 30, 40, 50 };
-		enemigos = new Enemigo[100];
+		this.nombresDeArma = new String[] { "Espada", "Lucero del Alba", "Daga", "Escudo", "Arco", "Lanza", "Ballesta", "Maza" };
+		this.valoresDeArma = new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8};
+		this.valoresEnemigos = new Integer[] { 5, 10, 15, 20, 25, 30, 35, 40};
+		enemigos = new Enemigo[500];
 		jefes = new Jefe[100];
 
 		this.crearArmas();
@@ -30,28 +32,18 @@ public class Juego {
 	public void crearArmas() {
 		for (int i = 0; i < armasADropear.length; i++) {
 			if (this.armasADropear[i] == null) {
-				armasADropear[i] = new Arma(nombresDeArma[this.seleccionValorArma()],
-						valoresDeArma[this.seleccionValorArma()]);
+				armasADropear[i] = new Arma(nombresDeArma[this.valorAleatorio()],
+						valoresDeArma[this.valorAleatorio()]);
 			}
 		}
 	}
-
-	public int seleccionValorArma() {
-		Double random = Math.random();
-		int valor = 0;
-		if (random > 0.8) {
-			valor = 4;
-		} else if (random > 0.6 && random <= 0.8) {
-			valor = 3;
-		} else if (random > 0.4 && random <= 0.6) {
-			valor = 2;
-		} else if (random > 0.2 && random <= 0.4) {
-			valor = 1;
-		} else if (random > 0.0 && random <= 0.2) {
-			valor = 0;
-		}
+	
+	public int valorAleatorio() {
+		int valor = (int)((Math.random()*8));
 		return valor;
 	}
+
+	
 
 	public Boolean pelea(Heroe heroePrincipal, Personaje enemigo) {
 		Boolean victoria = false;
@@ -74,8 +66,8 @@ public class Juego {
 	public void crearEnemigo() {
 		for (int i = 0; i < enemigos.length; i++) {
 			if (enemigos[i] == null) {
-				enemigos[i] = new Enemigo(this.valoresDeArma[this.seleccionValorArma()],
-						this.valoresDeArma[this.seleccionValorArma()], this.valoresDeArma[this.seleccionValorArma()]);
+				enemigos[i] = new Enemigo(this.valoresEnemigos[this.valorAleatorio()],
+						this.valoresEnemigos[this.valorAleatorio()], this.valoresEnemigos[this.valorAleatorio()]);
 				break;
 			}
 		}
@@ -97,7 +89,7 @@ public class Juego {
 	public void crearJefe() {
 		for (int i = 0; i < jefes.length; i++) {
 			if (jefes[i] == null) {
-				jefes[i] = new Jefe(20, 30, 70);
+				jefes[i] = new Jefe(35, 10, 100);
 				break;
 			}
 		}
@@ -153,6 +145,7 @@ public class Juego {
 		for (int i = 0; i < armasADropear.length; i++) {
 			if(armasADropear[i]!=null) {
 				personaje.agregarArma(armasADropear[i]);
+				armasADropear[i]=null;
 				break;
 			}
 		}
